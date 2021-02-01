@@ -2,19 +2,32 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace MovieStore.business
 {
     class Category
     {
+        #region Properties
+        /// <summary>
+        /// ID
+        /// </summary>
         public int Id { get; set; }
+        /// <summary>
+        /// Name
+        /// </summary>
         public string Name { get; set; }
+        /// <summary>
+        /// Date Created
+        /// </summary>
         public DateTime DateCreated { get; set; }
+        /// <summary>
+        /// date updated
+        /// </summary>
         public DateTime? DateUpdated { get; set; }
+        #endregion
 
-
+        #region Constructors
         /// <summary>
         /// Default Constructor
         /// </summary>
@@ -30,6 +43,9 @@ namespace MovieStore.business
         {
             this.Name = name;
         }
+        #endregion
+
+        #region Method
         public void AddCategory()
         {
 
@@ -63,5 +79,6 @@ namespace MovieStore.business
                 await db.SaveChangesAsync();
             }
         }
+        #endregion Method
     }
 }
