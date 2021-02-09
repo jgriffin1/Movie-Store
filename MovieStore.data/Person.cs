@@ -26,7 +26,7 @@ namespace MovieStore.data
         public int Role_Id { get; set; }
         public string First_Name { get; set; }
         public string Middle_Name { get; set; }
-        public string Last_Name { get; set; }
+        public string Last_name { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
         public bool Is_Active { get; set; }

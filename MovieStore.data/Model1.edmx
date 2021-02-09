@@ -58,6 +58,7 @@
           <Property Name="Rating" Type="varchar" MaxLength="2" />
           <Property Name="Number_Of_Copies" Type="int" Nullable="false" />
           <Property Name="Cover" Type="image" />
+          <Property Name="Is_Removed" Type="bit" />
           <Property Name="Date_Created" Type="datetime" Nullable="false" />
           <Property Name="Date_Updated" Type="datetime" />
         </EntityType>
@@ -68,6 +69,7 @@
           </Key>
           <Property Name="Movie_Id" Type="int" Nullable="false" />
           <Property Name="Actor_Id" Type="int" Nullable="false" />
+          <Property Name="Date_Created" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="MovieCategory">
           <Key>
@@ -76,6 +78,7 @@
           </Key>
           <Property Name="Movie_Id" Type="int" Nullable="false" />
           <Property Name="Category_Id" Type="int" Nullable="false" />
+          <Property Name="Date_Created" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="MovieRental">
           <Key>
@@ -442,11 +445,14 @@
     <edmx:ConceptualModels>
       <Schema Namespace="MovieStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="MovieStoreEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="sysdiagrams" EntityType="MovieStoreModel.sysdiagram" />
           <EntitySet Name="Actors" EntityType="MovieStoreModel.Actor" />
           <EntitySet Name="Addresses" EntityType="MovieStoreModel.Address" />
           <EntitySet Name="Categories" EntityType="MovieStoreModel.Category" />
           <EntitySet Name="CreditCardTypes" EntityType="MovieStoreModel.CreditCardType" />
           <EntitySet Name="Movies" EntityType="MovieStoreModel.Movie" />
+          <EntitySet Name="MovieActors" EntityType="MovieStoreModel.MovieActor" />
+          <EntitySet Name="MovieCategories" EntityType="MovieStoreModel.MovieCategory" />
           <EntitySet Name="MovieRentals" EntityType="MovieStoreModel.MovieRental" />
           <EntitySet Name="Payments" EntityType="MovieStoreModel.Payment" />
           <EntitySet Name="PaymentInfoes" EntityType="MovieStoreModel.PaymentInfo" />
@@ -456,14 +462,29 @@
           <EntitySet Name="PhoneTypes" EntityType="MovieStoreModel.PhoneType" />
           <EntitySet Name="Rentals" EntityType="MovieStoreModel.Rental" />
           <EntitySet Name="Roles" EntityType="MovieStoreModel.Role" />
-          <EntitySet Name="sysdiagrams" EntityType="MovieStoreModel.sysdiagram" />
+          <AssociationSet Name="FK_MovieActor_Actor" Association="MovieStoreModel.FK_MovieActor_Actor">
+            <End Role="Actor" EntitySet="Actors" />
+            <End Role="MovieActor" EntitySet="MovieActors" />
+          </AssociationSet>
           <AssociationSet Name="FK_Address_Person" Association="MovieStoreModel.FK_Address_Person">
             <End Role="Person" EntitySet="People" />
             <End Role="Address" EntitySet="Addresses" />
           </AssociationSet>
+          <AssociationSet Name="FK_MovieCategory_Category" Association="MovieStoreModel.FK_MovieCategory_Category">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="MovieCategory" EntitySet="MovieCategories" />
+          </AssociationSet>
           <AssociationSet Name="FK_PaymentInfo_CreditCardType" Association="MovieStoreModel.FK_PaymentInfo_CreditCardType">
             <End Role="CreditCardType" EntitySet="CreditCardTypes" />
             <End Role="PaymentInfo" EntitySet="PaymentInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovieActor_Movie" Association="MovieStoreModel.FK_MovieActor_Movie">
+            <End Role="Movie" EntitySet="Movies" />
+            <End Role="MovieActor" EntitySet="MovieActors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovieCategory_Movie" Association="MovieStoreModel.FK_MovieCategory_Movie">
+            <End Role="Movie" EntitySet="Movies" />
+            <End Role="MovieCategory" EntitySet="MovieCategories" />
           </AssociationSet>
           <AssociationSet Name="FK_MovieRental_Movie" Association="MovieStoreModel.FK_MovieRental_Movie">
             <End Role="Movie" EntitySet="Movies" />
@@ -501,15 +522,17 @@
             <End Role="PhoneType" EntitySet="PhoneTypes" />
             <End Role="Phone" EntitySet="Phones" />
           </AssociationSet>
-          <AssociationSet Name="MovieActor" Association="MovieStoreModel.MovieActor">
-            <End Role="Actor" EntitySet="Actors" />
-            <End Role="Movie" EntitySet="Movies" />
-          </AssociationSet>
-          <AssociationSet Name="MovieCategory" Association="MovieStoreModel.MovieCategory">
-            <End Role="Category" EntitySet="Categories" />
-            <End Role="Movie" EntitySet="Movies" />
-          </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
         <EntityType Name="Actor">
           <Key>
             <PropertyRef Name="Id" />
@@ -520,7 +543,7 @@
           <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Date_Updated" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Movies" Relationship="MovieStoreModel.MovieActor" FromRole="Actor" ToRole="Movie" />
+          <NavigationProperty Name="MovieActors" Relationship="MovieStoreModel.FK_MovieActor_Actor" FromRole="Actor" ToRole="MovieActor" />
         </EntityType>
         <EntityType Name="Address">
           <Key>
@@ -546,7 +569,7 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
           <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Date_Updated" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Movies" Relationship="MovieStoreModel.MovieCategory" FromRole="Category" ToRole="Movie" />
+          <NavigationProperty Name="MovieCategories" Relationship="MovieStoreModel.FK_MovieCategory_Category" FromRole="Category" ToRole="MovieCategory" />
         </EntityType>
         <EntityType Name="CreditCardType">
           <Key>
@@ -567,11 +590,34 @@
           <Property Name="Rating" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Name="Number_Of_Copies" Type="Int32" Nullable="false" />
           <Property Name="Cover" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Is_Removed" Type="Boolean" />
           <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Date_Updated" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MovieActors" Relationship="MovieStoreModel.FK_MovieActor_Movie" FromRole="Movie" ToRole="MovieActor" />
+          <NavigationProperty Name="MovieCategories" Relationship="MovieStoreModel.FK_MovieCategory_Movie" FromRole="Movie" ToRole="MovieCategory" />
           <NavigationProperty Name="MovieRentals" Relationship="MovieStoreModel.FK_MovieRental_Movie" FromRole="Movie" ToRole="MovieRental" />
-          <NavigationProperty Name="Actors" Relationship="MovieStoreModel.MovieActor" FromRole="Movie" ToRole="Actor" />
-          <NavigationProperty Name="Categories" Relationship="MovieStoreModel.MovieCategory" FromRole="Movie" ToRole="Category" />
+        </EntityType>
+        <EntityType Name="MovieActor">
+          <Key>
+            <PropertyRef Name="Movie_Id" />
+            <PropertyRef Name="Actor_Id" />
+          </Key>
+          <Property Name="Movie_Id" Type="Int32" Nullable="false" />
+          <Property Name="Actor_Id" Type="Int32" Nullable="false" />
+          <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Actor" Relationship="MovieStoreModel.FK_MovieActor_Actor" FromRole="MovieActor" ToRole="Actor" />
+          <NavigationProperty Name="Movie" Relationship="MovieStoreModel.FK_MovieActor_Movie" FromRole="MovieActor" ToRole="Movie" />
+        </EntityType>
+        <EntityType Name="MovieCategory">
+          <Key>
+            <PropertyRef Name="Movie_Id" />
+            <PropertyRef Name="Category_Id" />
+          </Key>
+          <Property Name="Movie_Id" Type="Int32" Nullable="false" />
+          <Property Name="Category_Id" Type="Int32" Nullable="false" />
+          <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Category" Relationship="MovieStoreModel.FK_MovieCategory_Category" FromRole="MovieCategory" ToRole="Category" />
+          <NavigationProperty Name="Movie" Relationship="MovieStoreModel.FK_MovieCategory_Movie" FromRole="MovieCategory" ToRole="Movie" />
         </EntityType>
         <EntityType Name="MovieRental">
           <Key>
@@ -681,16 +727,18 @@
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="People" Relationship="MovieStoreModel.FK_Person_Role" FromRole="Role" ToRole="Person" />
         </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
-        </EntityType>
+        <Association Name="FK_MovieActor_Actor">
+          <End Type="MovieStoreModel.Actor" Role="Actor" Multiplicity="1" />
+          <End Type="MovieStoreModel.MovieActor" Role="MovieActor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Actor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MovieActor">
+              <PropertyRef Name="Actor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Address_Person">
           <End Type="MovieStoreModel.Person" Role="Person" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -705,6 +753,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MovieCategory_Category">
+          <End Type="MovieStoreModel.Category" Role="Category" Multiplicity="1" />
+          <End Type="MovieStoreModel.MovieCategory" Role="MovieCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MovieCategory">
+              <PropertyRef Name="Category_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PaymentInfo_CreditCardType">
           <End Type="MovieStoreModel.CreditCardType" Role="CreditCardType" Multiplicity="0..1" />
           <End Type="MovieStoreModel.PaymentInfo" Role="PaymentInfo" Multiplicity="*" />
@@ -714,6 +774,30 @@
             </Principal>
             <Dependent Role="PaymentInfo">
               <PropertyRef Name="Credit_Card_Type_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovieActor_Movie">
+          <End Type="MovieStoreModel.Movie" Role="Movie" Multiplicity="1" />
+          <End Type="MovieStoreModel.MovieActor" Role="MovieActor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MovieActor">
+              <PropertyRef Name="Movie_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovieCategory_Movie">
+          <End Type="MovieStoreModel.Movie" Role="Movie" Multiplicity="1" />
+          <End Type="MovieStoreModel.MovieCategory" Role="MovieCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Movie">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MovieCategory">
+              <PropertyRef Name="Movie_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -825,20 +909,23 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="MovieActor">
-          <End Type="MovieStoreModel.Actor" Role="Actor" Multiplicity="*" />
-          <End Type="MovieStoreModel.Movie" Role="Movie" Multiplicity="*" />
-        </Association>
-        <Association Name="MovieCategory">
-          <End Type="MovieStoreModel.Category" Role="Category" Multiplicity="*" />
-          <End Type="MovieStoreModel.Movie" Role="Movie" Multiplicity="*" />
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MovieStoreModelStoreContainer" CdmEntityContainer="MovieStoreEntities" >
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MovieStoreModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Actors">
             <EntityTypeMapping TypeName="MovieStoreModel.Actor">
               <MappingFragment StoreEntitySet="Actor">
@@ -890,6 +977,7 @@
               <MappingFragment StoreEntitySet="Movie">
                 <ScalarProperty Name="Date_Updated" ColumnName="Date_Updated" />
                 <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
+                <ScalarProperty Name="Is_Removed" ColumnName="Is_Removed" />
                 <ScalarProperty Name="Cover" ColumnName="Cover" />
                 <ScalarProperty Name="Number_Of_Copies" ColumnName="Number_Of_Copies" />
                 <ScalarProperty Name="Rating" ColumnName="Rating" />
@@ -897,6 +985,24 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MovieActors">
+            <EntityTypeMapping TypeName="MovieStoreModel.MovieActor">
+              <MappingFragment StoreEntitySet="MovieActor">
+                <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
+                <ScalarProperty Name="Actor_Id" ColumnName="Actor_Id" />
+                <ScalarProperty Name="Movie_Id" ColumnName="Movie_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MovieCategories">
+            <EntityTypeMapping TypeName="MovieStoreModel.MovieCategory">
+              <MappingFragment StoreEntitySet="MovieCategory">
+                <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
+                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
+                <ScalarProperty Name="Movie_Id" ColumnName="Movie_Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -997,34 +1103,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="MovieStoreModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="MovieActor" TypeName="MovieStoreModel.MovieActor" StoreEntitySet="MovieActor">
-            <EndProperty Name="Movie">
-              <ScalarProperty Name="Id" ColumnName="Movie_Id" />
-            </EndProperty>
-            <EndProperty Name="Actor">
-              <ScalarProperty Name="Id" ColumnName="Actor_Id" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="MovieCategory" TypeName="MovieStoreModel.MovieCategory" StoreEntitySet="MovieCategory">
-            <EndProperty Name="Movie">
-              <ScalarProperty Name="Id" ColumnName="Movie_Id" />
-            </EndProperty>
-            <EndProperty Name="Category">
-              <ScalarProperty Name="Id" ColumnName="Category_Id" />
-            </EndProperty>
-          </AssociationSetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
