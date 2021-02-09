@@ -136,6 +136,122 @@ namespace MovieStore.business
         }
       }
     }
+    /// <summary>
+    /// remove Movie
+    /// </summary>
+    /// <returns></returns>
+    public async Task removeMovie()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        var movie = await db.Movies.Where(w => w.Id == this.Id).FirstOrDefaultAsync();
 
+        if(movie != null)
+        {
+          movie.Is_Removed = true;
+          movie.Date_Updated = DateTime.Now;
+        }
+      }
+    }
+    public async Task reAddMovie()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        var movie = await db.Movies.Where(w => w.Id == this.Id).FirstOrDefaultAsync();
+        if (movie != null)
+        {
+          movie.Is_Removed = false;
+          movie.Date_Updated = DateTime.Now;
+        }
+      }
+    }
+    public async Task<List<Movie>> getMovies()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        return await db.Movies.Select(s => new Movie
+        {
+          Cover = s.Cover,
+          Description = s.Description,
+          Id = s.Id,
+          NumberOfCopies = s.Number_Of_Copies,
+          Rating = s.Rating,
+          Title = s.Title,
+          ReleaseYear = s.Release_Year,
+          Actors = s.MovieActors.Where(w => w.Movie_Id == this.Id).Select(x => new Actor
+          {
+            Id = x.Actor_Id,
+            FirstName = x.Actor.First_Name,
+            LastName = x.Actor.Last_Name,
+            MiddleName = x.Actor.Middle_Name
+          }).ToList()
+        }).ToListAsync();
+      }
+    }
+    public async Task<Movie> getMovie()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        return await db.Movies.Where(w => w.Id == this.Id).Select(s => new Movie
+        {
+          Cover = s.Cover,
+          Description = s.Description,
+          Id = s.Id,
+          NumberOfCopies = s.Number_Of_Copies,
+          Rating = s.Rating,
+          Title = s.Title,
+          ReleaseYear = s.Release_Year,
+          Actors = s.MovieActors.Where(w => w.Movie_Id == this.Id).Select(x => new Actor
+          {
+            Id = x.Actor_Id,
+            FirstName = x.Actor.First_Name,
+            LastName = x.Actor.Last_Name,
+            MiddleName = x.Actor.Middle_Name
+          }).ToList()
+        }).FirstOrDefaultAsync();
+      }
+    }
+    public async Task<List<Movie>> searchMovies()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        var movies = db.Movies.Select(s => s);
+        if (!string.IsNullOrEmpty(this.Title))
+        {
+          movies = movies.Where(w => w.Title.Contains(this.Title));
+        }
+        if (!string.IsNullOrEmpty(this.Rating))
+        {
+          movies = movies.Where(w => w.Rating.Contains(this.Rating));
+        }
+        if (this.ReleaseYear >=1888)
+        {
+          movies = movies.Where(w => w.Release_Year ==this.ReleaseYear);
+        }
+        if(this.Actors!=null && this.Actors.Count > 0)
+        {
+          foreach(var item in this.Actors)
+          {
+            movies = movies.Where(w => w.MovieActors.Any(x => x.Actor_Id == this.Id));
+          }
+        }
+        return await movies.Select(s => new Movie {
+          Cover = s.Cover,
+          Description = s.Description,
+          Id = s.Id,
+          NumberOfCopies = s.Number_Of_Copies,
+          Rating = s.Rating,
+          Title = s.Title,
+          ReleaseYear = s.Release_Year,
+          Actors = s.MovieActors.Where(w => w.Movie_Id == this.Id).Select(x => new Actor
+          {
+            Id = x.Actor_Id,
+            FirstName = x.Actor.First_Name,
+            LastName = x.Actor.Last_Name,
+            MiddleName = x.Actor.Middle_Name
+          }).ToList()
+        }).ToListAsync();
+      }
+    }
   }
 }

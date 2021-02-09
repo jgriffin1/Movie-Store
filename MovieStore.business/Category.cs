@@ -6,58 +6,20 @@ using System.Threading.Tasks;
 
 namespace MovieStore.business
 {
-    class Category
+    class Category : Base<Category>
     {
-        #region Properties
-        /// <summary>
-        /// ID
-        /// </summary>
-        public int Id { get; set; }
-        /// <summary>
-        /// Name
-        /// </summary>
-        public string Name { get; set; }
-        /// <summary>
-        /// Date Created
-        /// </summary>
-        public DateTime DateCreated { get; set; }
-        /// <summary>
-        /// date updated
-        /// </summary>
-        public DateTime? DateUpdated { get; set; }
-        #endregion
 
-        #region Constructors
-        /// <summary>
-        /// Default Constructor
-        /// </summary>
-        public Category()
-        {
-
-        }
-        /// <summary>
-        /// Constructor with parameter of type string
-        /// </summary>
-        /// <param name="name"></param>
-        public Category(string name)
-        {
-            this.Name = name;
-        }
-        #endregion
 
         #region Method
-        public void AddCategory()
-        {
 
-        }
-        public async Task<List<Category>> GetCategories()
+        public override async Task<List<Category>> getRecords()
         {
             using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
             {
                 return await db.Categories.Select(s => new Category { Id = s.Id, Name = s.Name }).ToListAsync();
             }
         }
-        public async Task  addCategory()
+        public override async Task addRecord()
         {
             using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
             {
@@ -69,7 +31,7 @@ namespace MovieStore.business
                 await db.SaveChangesAsync();
             }
         }
-        public async Task updateCategory()
+        public override async Task updateRecord()
         {
             using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
             {

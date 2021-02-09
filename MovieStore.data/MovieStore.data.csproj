@@ -83,6 +83,12 @@
     <Compile Include="Movie.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="MovieActor.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MovieCategory.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="MovieRental.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

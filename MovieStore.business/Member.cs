@@ -30,7 +30,7 @@ namespace MovieStore.business
                 MovieStore.data.Person member = new MovieStore.data.Person();
                 member.First_Name = this.FirstName;
                 member.Middle_Name = this.MiddleName;
-                member.Last_Name = this.LastName;
+                member.Last_name = this.LastName;
                 member.Is_Active = this.IsActive;
                 member.UserName = this.UserName;
                 member.Password = this.Password;
@@ -79,7 +79,7 @@ namespace MovieStore.business
                 {
                     member.First_Name = this.FirstName;
                     member.Middle_Name = this.MiddleName;
-                    member.Last_Name = this.LastName;
+                    member.Last_name = this.LastName;
                     member.Profile_Picture = this.ProfilePicture;
                     member.Date_Updated = DateTime.Now;
                 }
