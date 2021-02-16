@@ -12,8 +12,9 @@ namespace MovieStore.data
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
-    public partial class MovieStoreEntities : DbContext
+  using System.Threading.Tasks;
+
+  public partial class MovieStoreEntities : DbContext
     {
         public MovieStoreEntities()
             : base("name=MovieStoreEntities")
@@ -29,7 +30,8 @@ namespace MovieStore.data
         public virtual DbSet<Actor> Actors { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
-        public virtual DbSet<CreditCardType> CreditCardTypes { get; set; }
+
+    public virtual DbSet<CreditCardType> CreditCardTypes { get; set; }
         public virtual DbSet<Movie> Movies { get; set; }
         public virtual DbSet<MovieActor> MovieActors { get; set; }
         public virtual DbSet<MovieCategory> MovieCategories { get; set; }
