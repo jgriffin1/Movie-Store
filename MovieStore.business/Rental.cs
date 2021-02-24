@@ -84,7 +84,7 @@ namespace MovieStore.business
               paymentInfo.Payment_Date = DateTime.Now;
               paymentInfo.Payment_Status = "S";
               paymentInfo.Is_Void = false;
-              paymentInfo.Ref_Id = Guid.NewGuid().ToString();
+              paymentInfo.Rep_Id = Guid.NewGuid().ToString();
 
               db.PaymentInfoes.Add(paymentInfo);
               await db.SaveChangesAsync();
@@ -146,7 +146,7 @@ namespace MovieStore.business
             {
               CheckNumber = k.Check_Number,
               IsVoid = k.Is_Void,
-              RefId = k.Ref_Id,
+              RepId = k.Rep_Id,
               PaymentStatus = k.Payment_Status,
               CreditCardTypeInformation = new CreditCardType
               {

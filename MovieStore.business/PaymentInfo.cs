@@ -8,7 +8,7 @@ namespace MovieStore.business
 {
   public class PaymentInfo
   {
-    public string RefId { get; set; }
+    public string RepId { get; set; }
     public string PaymentStatus { get; set; }
     public bool? IsVoid { get; set; }
     public int? CheckNumber { get; set; }

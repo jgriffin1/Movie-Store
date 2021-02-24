@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MovieStore.business
 {
-    class Category : Base<Category>
+    public class Category : Base<Category>
     {
 
 
@@ -16,7 +16,7 @@ namespace MovieStore.business
         {
             using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
             {
-                return await db.Categories.Select(s => new Category { Id = s.Id, Name = s.Name }).ToListAsync();
+                return await db.Categories.Select(s => new Category { Id = s.Id, Name = s.Name, DateCreated=s.Date_Created, DateUpdated=s.Date_Updated }).ToListAsync();
             }
         }
         public override async Task addRecord()

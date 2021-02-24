@@ -15,7 +15,7 @@ namespace MovieStore.data
     public partial class PaymentInfo
     {
         public int Id { get; set; }
-        public string Ref_Id { get; set; }
+        public string Rep_Id { get; set; }
         public string Payment_Status { get; set; }
         public Nullable<bool> Is_Void { get; set; }
         public System.DateTime Payment_Date { get; set; }
