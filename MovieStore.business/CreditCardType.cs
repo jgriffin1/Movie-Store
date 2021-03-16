@@ -24,6 +24,15 @@ namespace MovieStore.business
         await db.SaveChangesAsync();
       }
     }
+
+    public override async Task<CreditCardType> getRecord()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        return await db.CreditCardTypes.Where(s=>s.Id==this.Id).Select(s => new CreditCardType { Id = s.Id, Name=s.Name}).FirstOrDefaultAsync();
+      }
+    }
+
     /// <summary>
     /// get credit card type
     /// </summary>
@@ -43,9 +52,8 @@ namespace MovieStore.business
     {
       using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
       {
-        var creditCardType = await db.Categories.Where(w => w.Id == this.Id).Select(s => s).FirstOrDefaultAsync();
+        var creditCardType = await db.CreditCardTypes.Where(w => w.Id == this.Id).Select(s => s).FirstOrDefaultAsync();
         creditCardType.Name = this.Name;
-        creditCardType.Date_Updated = DateTime.Now;
         await db.SaveChangesAsync();
       }
     }

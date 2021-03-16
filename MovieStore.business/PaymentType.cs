@@ -24,6 +24,19 @@ namespace MovieStore.business
         await db.SaveChangesAsync();
       }
     }
+
+    public override async  Task<PaymentType> getRecord()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        return await db.PaymentTypes.Where(w => w.Id == this.Id).Select(s => new PaymentType
+        {
+          Name = s.Name,
+
+        }).FirstOrDefaultAsync();
+      }
+    }
+
     /// <summary>
     /// update payment type
     /// </summary>

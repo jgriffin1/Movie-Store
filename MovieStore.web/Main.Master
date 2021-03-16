@@ -18,16 +18,29 @@
 <body>
   <form id="frmMain" runat="server">
     <asp:ScriptManager ID="smManager" runat="server" />
-
-    <nav class="navbar navbar-dark bg-dark" >
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <asp:LinkButton ID="lbtnMovieStore" runat="server" Text="Movie Store" ToolTip="Movie Store" CssClass="navbar-brand" CausesValidation="false" />
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item ">
+            <a class="nav-link " href="PaymentTypes.aspx">Payment Types</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="PhoneTypes.aspx">Phone Types</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="CreditCardTypes.aspx">Credit Card Types</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Categories.aspx">Categories</a>
+          </li>
+        </ul>
+      </div>
     </nav>
-
-
-
-
-
-
     <asp:ContentPlaceHolder ID="cphMain" runat="server">
     </asp:ContentPlaceHolder>
   </form>

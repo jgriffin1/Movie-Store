@@ -24,6 +24,12 @@ namespace MovieStore.business
         await db.SaveChangesAsync();
       }
     }
+
+    public override Task<Role> getRecord()
+    {
+      throw new NotImplementedException();
+    }
+
     /// <summary>
     /// update role 
     /// </summary>

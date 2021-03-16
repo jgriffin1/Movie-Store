@@ -42,5 +42,14 @@ namespace MovieStore.business
     /// </summary>
     /// <returns></returns>
     public abstract Task<List<T>> getRecords();
+
+    /// <summary>
+    /// 
+    /// Get category
+    /// </summary>
+    /// <returns></returns>
+    public abstract Task<T> getRecord();
+
+
   }
 }

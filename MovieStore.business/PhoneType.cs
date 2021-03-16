@@ -24,6 +24,19 @@ namespace MovieStore.business
         await db.SaveChangesAsync();
       }
     }
+
+    public override async Task<PhoneType> getRecord()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        return await db.PhoneTypes.Where(w => w.Id == this.Id).Select(s => new PhoneType
+        {
+          Name = s.Name,
+        }).FirstOrDefaultAsync();
+      }
+
+    }
+
     /// <summary>
     /// update phone type
     /// </summary>
@@ -44,9 +57,8 @@ namespace MovieStore.business
     {
       using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
       {
-        var phoneType = await db.Categories.Where(w => w.Id == this.Id).Select(s => s).FirstOrDefaultAsync();
+        var phoneType = await db.PhoneTypes.Where(w => w.Id == this.Id).Select(s => s).FirstOrDefaultAsync();
         phoneType.Name = this.Name;
-        phoneType.Date_Updated = DateTime.Now;
         await db.SaveChangesAsync();
       }
     }

@@ -12,14 +12,16 @@ namespace MovieStore.web
   {
     protected void Page_Load(object sender, EventArgs e)
     {
-      this.Page.RegisterAsyncTask(new PageAsyncTask(LoadData));
+      if (!this.Page.IsPostBack)
+      {
+        this.Page.RegisterAsyncTask(new PageAsyncTask(LoadData));
+      }
     }
     private async Task LoadData()
     {
-      if (!this.Page.IsPostBack)
-      {
-        await LoadCategories();
-      }
+
+      await LoadCategories();
+
     }
     private async Task LoadCategories()
     {
@@ -29,7 +31,17 @@ namespace MovieStore.web
     }
     protected void lbtnAddCategory_Click(object sender, EventArgs e)
     {
+      Response.Redirect("AddCategory.aspx");
+    }
 
+    protected void lvCategories_ItemCommand(object sender, ListViewCommandEventArgs e)
+    {
+      if (e.CommandName.ToLower().Trim().Equals("editcategory"))
+      {
+        Session.Add("categoryId", e.CommandArgument.ToString().Trim());
+
+        Response.Redirect("UpdateCategory.aspx");
+      }
     }
   }
 }

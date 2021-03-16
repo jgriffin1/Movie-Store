@@ -8,7 +8,7 @@
 
         <p>Please review information below</p>
 
-        <asp:ListView ID="lvCategories" runat="server" ItemPlaceholderID="ItemContainer" ClientIDMode="AutoID" ItemType="MovieStore.business.Category">
+        <asp:ListView ID="lvCategories" runat="server" OnItemCommand="lvCategories_ItemCommand" ItemPlaceholderID="ItemContainer" ClientIDMode="AutoID" ItemType="MovieStore.business.Category">
           <LayoutTemplate>
 
             <table class="table">
@@ -35,11 +35,13 @@
               <td><asp:Label ID="lblName" runat="server" Text='<%#: Item.Name %>' /></td>
               <td><asp:Label ID="lblDateCreated" runat="server" Text='<%#: Item.DateCreated.ToString("MM/dd/yyyy") %>' /></td>
               <td><asp:Label ID="lblDateUpdated" runat="server" Text='<%#: Item.DateUpdated.HasValue ? Item.DateUpdated.Value.ToString("MM/dd/yyyy") : "" %>' /></td>
-              <td><asp:LinkButton ID="lbtnEdit" runat="server" Text="Edit" ToolTip="Edit" CausesValidation="false" CommandName="EditCategory" /></td>
+              <td><asp:LinkButton ID="lbtnEdit" runat="server" Text="Edit" ToolTip="Edit" CausesValidation="false" CommandName="EditCategory" CommandArgument="<%#: Item.Id %>" /></td>
             </tr>
           </ItemTemplate>
           <EmptyDataTemplate>
             <p>No Record has been added yet.</p>
+            <asp:LinkButton ID="lbtnAddCategory" runat="server" Text="Add Category" ToolTip="Add Category" OnClick="lbtnAddCategory_Click" />
+
           </EmptyDataTemplate>
         </asp:ListView>
       </div>
