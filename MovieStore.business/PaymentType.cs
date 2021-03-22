@@ -57,9 +57,8 @@ namespace MovieStore.business
     {
       using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
       {
-        var paymentType = await db.Categories.Where(w => w.Id == this.Id).Select(s => s).FirstOrDefaultAsync();
+        var paymentType = await db.PaymentTypes.Where(w => w.Id == this.Id).Select(s => s).FirstOrDefaultAsync();
         paymentType.Name = this.Name;
-        paymentType.Date_Updated = DateTime.Now;
         await db.SaveChangesAsync();
       }
     }

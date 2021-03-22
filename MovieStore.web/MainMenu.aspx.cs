@@ -7,16 +7,16 @@ using System.Web.UI.WebControls;
 
 namespace MovieStore.web
 {
-  public partial class Main : System.Web.UI.MasterPage
+  public partial class MainMenu : System.Web.UI.Page
   {
     protected void Page_Load(object sender, EventArgs e)
     {
 
     }
 
-    protected void btnReturnToMenu_Click(object sender, EventArgs e)
+    protected void btnLogout_Click(object sender, EventArgs e)
     {
-      Response.Redirect("MainMenu.aspx");
+
     }
   }
 }
