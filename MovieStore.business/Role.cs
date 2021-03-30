@@ -38,7 +38,7 @@ namespace MovieStore.business
     {
       using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
       {
-        return await db.Roles.Select(s => new Role { Id = s.Id, Name = s.Name }).ToListAsync();
+        return await db.Roles.OrderByDescending(o=>o.Name).Select(s => new Role { Id = s.Id, Name = s.Name }).ToListAsync();
       }
     }
 

@@ -117,7 +117,7 @@ namespace MovieStore.business
             MiddleName = s.Person.Middle_Name,
             LastName = s.Person.Last_name,
             ProfilePicture = s.Person.Profile_Picture,
-            address = s.Person.Addresses.Where(a => a.Person_Id == s.Id).Select(x => new Address
+            Address = s.Person.Addresses.Where(a => a.Person_Id == s.Id).Select(x => new Address
             {
               AddressLine1 = x.Address_Line_1,
               AddressLine2 = x.Address_Line_2,
