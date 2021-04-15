@@ -143,7 +143,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Person_Id" Type="int" Nullable="false" />
           <Property Name="Phone_Type_ID" Type="int" Nullable="false" />
-          <Property Name="Number" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Number" Type="varchar" MaxLength="14" Nullable="false" />
           <Property Name="Date_Created" Type="datetime" Nullable="false" />
           <Property Name="Date_Updated" Type="datetime" />
         </EntityType>
@@ -694,7 +694,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Person_Id" Type="Int32" Nullable="false" />
           <Property Name="Phone_Type_ID" Type="Int32" Nullable="false" />
-          <Property Name="Number" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Number" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
           <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Date_Updated" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Person" Relationship="MovieStoreModel.FK_Phone_Person" FromRole="Phone" ToRole="Person" />

@@ -186,7 +186,7 @@
                 CssClass="btn btn-success btn-sm" OnClick="btnSearch_Click" />
             </div>
             <div class="clearfix">&nbsp; </div>
-            <asp:ListView ID="lvCustomers" OnItemCommand="lvCustomers_ItemCommand" runat="server"
+            <asp:ListView ID="lvMembers" OnItemCommand="lvMembers_ItemCommand" runat="server"
               ItemPlaceholderID="ItemContainer" ClientIDMode="AutoID"
               ItemType="MovieStore.business.Member">
               <LayoutTemplate>
@@ -207,7 +207,7 @@
                     <tfoot>
                       <tr>
                         <td colspan="5">
-                          <asp:LinkButton ID="lbtnAddCustomer" runat="server" Text="Add Customer" ToolTip="Add Customer" OnClick="lbtnAddCustomer_Click" />
+                          <asp:LinkButton ID="lbtnAddMember" runat="server" Text="Add Member" ToolTip="Add Member" OnClick="lbtnAddMember_Click" />
                         </td>
                       </tr>
                     </tfoot>
@@ -223,19 +223,19 @@
                     <asp:Label ID="lblPhone" runat="server" Text='<%#(Item.Phones!=null && Item.Phones.Count>0) ? Item.Phones.FirstOrDefault().PhoneNumber : "" %>' />
                   </td>
                   <td data-label="Address">
-                    <asp:Label ID="lblAddress" runat="server" Text='<%#: Item.Address.AddressLine1 + "<br />" + (string.IsNullOrEmpty(Item.Address.AddressLine2) ? "" : Item.Address.AddressLine2 + "<br />") 
+                    <asp:Label ID="lblAddress" runat="server" Text='<%# Item.Address.AddressLine1 + "<br />" + (string.IsNullOrEmpty(Item.Address.AddressLine2) ? "" : Item.Address.AddressLine2 + "<br />") 
                         + Item.Address.City + ", " + Item.Address.State + "<br />" + Item.Address.ZipCode %>' />
                   </td>
                   <td data-label="Active">
                     <asp:Label ID="lblActive" runat="server" Text='<%#: (Item.IsActive==false ? "No" : "Yes") %>' />
                   </td>
                   <td data-label="Actions">
-                    <asp:LinkButton ID="lbtnUpdateBasicInfo" runat="server" Text="Update Basic Info" ToolTip="Update Info"
-                      CommandName="UpdateInfo" CausesValidation="false" CommandArgument="<%#: Item.Id %>" />
+                    <asp:LinkButton ID="lbtnUpdateBasicInfo" runat="server" Text="Update Basic Info" ToolTip="Update Info" 
+                      CommandName="UpdateInfo" CausesValidation="false" CommandArgument="<%#: Item.Id %>" />&nbsp;|
                     <asp:LinkButton ID="lbtnUpdatePhoneInfo" runat="server" Text="Phone Info" ToolTip="Update Phone Info"
-                      CommandName="UpdatePhoneInfo" CausesValidation="false" CommandArgument="<%#: Item.Id %>" />
+                      CommandName="UpdatePhoneInfo" CausesValidation="false" CommandArgument="<%#: Item.Id %>" />&nbsp;|
                     <asp:LinkButton ID="lbtnUpdateSecurityInfo" runat="server" Text="Security Info" ToolTip="Update Security Info"
-                      CommandName="UpdateSecurityInfo" CausesValidation="false" CommandArgument="<%#: Item.Id %>" />
+                      CommandName="UpdateSecurityInfo" CausesValidation="false" CommandArgument="<%#: Item.Id %>" />&nbsp;|
                     <asp:LinkButton ID="lbtnUpdateAddressInfo" runat="server" Text="Address Info" ToolTip="Update Address Info"
                       CommandName="UpdateAddressInfo" CausesValidation="false" CommandArgument="<%#: Item.Id %>" />
                   </td>
@@ -243,7 +243,7 @@
               </ItemTemplate>
               <EmptyDataTemplate>
                 <p>No Record has been added yet.</p>
-                <asp:LinkButton ID="lbtnAddCustomer" runat="server" Text="Add Member" ToolTip="Add Customer" OnClick="lbtnAddCustomer_Click" />
+                <asp:LinkButton ID="lbtnAddMember" runat="server" Text="Add Member" ToolTip="Add Member" OnClick="lbtnAddMember_Click" />
 
               </EmptyDataTemplate>
             </asp:ListView>

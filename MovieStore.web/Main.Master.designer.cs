@@ -33,15 +33,6 @@ namespace MovieStore.web
     protected global::System.Web.UI.ScriptManager smManager;
 
     /// <summary>
-    /// lbtnMovieStore control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.LinkButton lbtnMovieStore;
-
-    /// <summary>
     /// cphMain control.
     /// </summary>
     /// <remarks>

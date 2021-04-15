@@ -17,6 +17,12 @@
 
         <div class="clearfix">&nbsp;</div>
 
+        <ul class="list-group">
+          <li class="list-group-item"><a href="Members.aspx" title="Categories">Manage Members</a></li>
+        </ul>
+
+        <div class="clearfix">&nbsp;</div>
+
         <div class="form-group">
           <asp:Button ID="btnLogout" cssclass="btn btn-danger btn-sm" runat="server" Text="Logout" ToolTip="Logout" OnClick="btnLogout_Click" />
         </div>

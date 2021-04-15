@@ -22,8 +22,8 @@ namespace MovieStore.web
         this.ddlRoles.DataSource = await role.getRecords();
         this.ddlRoles.DataBind();
 
-        this.lvCustomers.DataSource = await new MovieStore.business.Member().GetMembers();
-        this.lvCustomers.DataBind();
+        this.lvMembers.DataSource = await new MovieStore.business.Member().GetMembers();
+        this.lvMembers.DataBind();
       }
     }
     protected void btnClear_Click(object sender, EventArgs e)
@@ -42,8 +42,8 @@ namespace MovieStore.web
     }
     private async Task LoadMembers()
     {
-      this.lvCustomers.DataSource = await new MovieStore.business.Member().GetMembers();
-      this.lvCustomers.DataBind();
+      this.lvMembers.DataSource = await new MovieStore.business.Member().GetMembers();
+      this.lvMembers.DataBind();
     }
     private async Task SearchMembers()
     {
@@ -61,15 +61,15 @@ namespace MovieStore.web
           ZipCode = this.tboxZipCode.Text.Trim()
         }
       };
-      this.lvCustomers.DataSource = await member.searchMembers();
-      this.lvCustomers.DataBind();
+      this.lvMembers.DataSource = await member.searchMembers();
+      this.lvMembers.DataBind();
     }
-    protected void lbtnAddCustomer_Click(object sender, EventArgs e)
+    protected void lbtnAddMember_Click(object sender, EventArgs e)
     {
       Response.Redirect("AddMember.aspx");
     }
 
-    protected void lvCustomers_ItemCommand(object sender, ListViewCommandEventArgs e)
+    protected void lvMembers_ItemCommand(object sender, ListViewCommandEventArgs e)
     {
       if (e.CommandName.ToLower().Trim().Equals("updateinfo"))
       {

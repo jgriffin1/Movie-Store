@@ -11,53 +11,53 @@ namespace MovieStore.web
 {
 
 
-  public partial class Members
+  public partial class UpdateAddressInfo
   {
 
     /// <summary>
-    /// lblFirstName control.
+    /// upnlAddressInfo control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Label lblFirstName;
+    protected global::System.Web.UI.UpdatePanel upnlAddressInfo;
 
     /// <summary>
-    /// tboxFirstName control.
+    /// lvAddresses control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.TextBox tboxFirstName;
+    protected global::System.Web.UI.WebControls.ListView lvAddresses;
 
     /// <summary>
-    /// ftboxeFirstName control.
+    /// pnlAddEditAddress control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::AjaxControlToolkit.FilteredTextBoxExtender ftboxeFirstName;
+    protected global::System.Web.UI.WebControls.Panel pnlAddEditAddress;
 
     /// <summary>
-    /// lblMiddleName control.
+    /// lblAdresss1 control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Label lblMiddleName;
+    protected global::System.Web.UI.WebControls.Label lblAdresss1;
 
     /// <summary>
-    /// tboxMiddleName control.
+    /// tboxAddress1 control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.TextBox tboxMiddleName;
+    protected global::System.Web.UI.WebControls.TextBox tboxAddress1;
 
     /// <summary>
     /// FilteredTextBoxExtender1 control.
@@ -69,22 +69,31 @@ namespace MovieStore.web
     protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender1;
 
     /// <summary>
-    /// Label2 control.
+    /// RequiredFieldValidator1 control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Label Label2;
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
 
     /// <summary>
-    /// tboxLastName control.
+    /// lblAddress2 control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.TextBox tboxLastName;
+    protected global::System.Web.UI.WebControls.Label lblAddress2;
+
+    /// <summary>
+    /// tboxAddress2 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.TextBox tboxAddress2;
 
     /// <summary>
     /// FilteredTextBoxExtender2 control.
@@ -114,33 +123,6 @@ namespace MovieStore.web
     protected global::System.Web.UI.WebControls.TextBox tboxCity;
 
     /// <summary>
-    /// ftboxeCity control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::AjaxControlToolkit.FilteredTextBoxExtender ftboxeCity;
-
-    /// <summary>
-    /// lblZipCode control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Label lblZipCode;
-
-    /// <summary>
-    /// tboxZipCode control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.TextBox tboxZipCode;
-
-    /// <summary>
     /// FilteredTextBoxExtender3 control.
     /// </summary>
     /// <remarks>
@@ -148,6 +130,15 @@ namespace MovieStore.web
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
     protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender3;
+
+    /// <summary>
+    /// RequiredFieldValidator2 control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
 
     /// <summary>
     /// lblState control.
@@ -168,66 +159,102 @@ namespace MovieStore.web
     protected global::System.Web.UI.WebControls.DropDownList ddlStates;
 
     /// <summary>
-    /// lblActive control.
+    /// RequiredFieldValidator4 control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Label lblActive;
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator4;
 
     /// <summary>
-    /// rdoActive control.
+    /// lblZipCode control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.RadioButtonList rdoActive;
+    protected global::System.Web.UI.WebControls.Label lblZipCode;
 
     /// <summary>
-    /// lblRole control.
+    /// tboxZipCode control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Label lblRole;
+    protected global::System.Web.UI.WebControls.TextBox tboxZipCode;
 
     /// <summary>
-    /// ddlRoles control.
+    /// FilteredTextBoxExtender4 control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.DropDownList ddlRoles;
+    protected global::AjaxControlToolkit.FilteredTextBoxExtender FilteredTextBoxExtender4;
 
     /// <summary>
-    /// btnClear control.
+    /// RequiredFieldValidator3 control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Button btnClear;
+    protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
 
     /// <summary>
-    /// btnSearch control.
+    /// btnCancel control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.Button btnSearch;
+    protected global::System.Web.UI.WebControls.Button btnCancel;
 
     /// <summary>
-    /// lvMembers control.
+    /// btnSave control.
     /// </summary>
     /// <remarks>
     /// Auto-generated field.
     /// To modify move field declaration from designer file to code-behind file.
     /// </remarks>
-    protected global::System.Web.UI.WebControls.ListView lvMembers;
+    protected global::System.Web.UI.WebControls.Button btnSave;
+
+    /// <summary>
+    /// btnReturn control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button btnReturn;
+
+    /// <summary>
+    /// pnlDeleteModal control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Panel pnlDeleteModal;
+
+    /// <summary>
+    /// upnlDeleteModal control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.UpdatePanel upnlDeleteModal;
+
+    /// <summary>
+    /// btnDelete control.
+    /// </summary>
+    /// <remarks>
+    /// Auto-generated field.
+    /// To modify move field declaration from designer file to code-behind file.
+    /// </remarks>
+    protected global::System.Web.UI.WebControls.Button btnDelete;
   }
 }

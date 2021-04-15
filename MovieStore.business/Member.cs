@@ -70,6 +70,104 @@ namespace MovieStore.business
       }
     }
 
+    public async Task<List<Address>> getAddresses()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        return await db.Addresses.Where(w => w.Person_Id == this.Id).Select(s => new Address
+        {
+          AddressLine1 = s.Address_Line_1,
+          AddressLine2 = s.Address_Line_2,
+          City = s.City,
+          State = s.State,
+          ZipCode = s.Zip_Code,
+          Id = s.Id,
+          IsPrimary = s.Is_Primary
+        }).ToListAsync();
+      }
+    }
+    public async Task addAddress()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        MovieStore.data.Address address = new data.Address();
+        address.Person_Id = this.Id;
+        address.Address_Line_1 = this.Address.AddressLine1;
+        address.Address_Line_2 = this.Address.AddressLine2;
+        address.City = this.Address.City;
+        address.State = this.Address.State;
+        address.Zip_Code = this.Address.ZipCode;
+        address.Date_Created = DateTime.Now;
+        address.Is_Primary = this.Address.IsPrimary;
+
+        db.Addresses.Add(address);
+        await db.SaveChangesAsync();
+
+      }
+    }
+    public async Task<Address> getAddress()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        return await db.Addresses.Where(w => w.Id == this.Address.Id).Select(s => new Address
+        {
+          AddressLine1 = s.Address_Line_1,
+          AddressLine2 = s.Address_Line_2,
+          City = s.City,
+          State = s.State,
+          ZipCode = s.Zip_Code,
+          Id = s.Id,
+          IsPrimary = s.Is_Primary
+        }).FirstOrDefaultAsync();
+      }
+    }
+
+    public async Task deleteAddress()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        var address = await db.Addresses.Where(w => w.Id == this.Address.Id && w.Person_Id == this.Id).FirstOrDefaultAsync();
+
+        if (address != null)
+        {
+          db.Addresses.Remove(address);
+          await db.SaveChangesAsync();
+        }
+      }
+    }
+
+    public async Task setAddressAsPrimary()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        using (var transaction = db.Database.BeginTransaction())
+        {
+          try
+          {
+            var addresses = await db.Addresses.Where(w => w.Person_Id == this.Id).ToListAsync();
+            if (addresses != null && addresses.Count > 0)
+            {
+              foreach (var item in addresses)
+              {
+                item.Is_Primary = false;
+                await db.SaveChangesAsync();
+              }
+            }
+            var address = await db.Addresses.Where(w => w.Person_Id == this.Id && w.Id == this.Address.Id).FirstOrDefaultAsync();
+            address.Is_Primary = true;
+            await db.SaveChangesAsync();
+            transaction.Commit();
+          }
+          catch (Exception e)
+          {
+            transaction.Rollback();
+            throw e;
+          }
+          
+        }
+
+      }
+    }
     public override async Task updatePerson()
     {
       using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
@@ -111,7 +209,7 @@ namespace MovieStore.business
     {
       using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
       {
-        var members = db.People.Where(w=>w.Role_Id==this.RoleId).Select(s => s);
+        var members = db.People.Where(w => w.Role_Id == this.RoleId).Select(s => s);
         if (!string.IsNullOrEmpty(this.FirstName))
         {
           members = members.Where(w => w.First_Name.StartsWith(this.FirstName));
@@ -124,9 +222,9 @@ namespace MovieStore.business
         {
           members = members.Where(w => w.Last_name.StartsWith(this.LastName));
         }
-        if(this.Address !=null && !string.IsNullOrEmpty(this.Address.City))
+        if (this.Address != null && !string.IsNullOrEmpty(this.Address.City))
         {
-          members = members.Where(w => w.Addresses.Any(a=>a.City.Contains(this.Address.City)));
+          members = members.Where(w => w.Addresses.Any(a => a.City.Contains(this.Address.City)));
         }
         if (this.Address != null && !string.IsNullOrEmpty(this.Address.State))
         {
@@ -136,7 +234,7 @@ namespace MovieStore.business
         {
           members = members.Where(w => w.Addresses.Any(a => a.Zip_Code.Contains(this.Address.ZipCode)));
         }
-          members = members.Where(w => w.Is_Active ==this.IsActive);
+        members = members.Where(w => w.Is_Active == this.IsActive);
 
         return await members.Select(s => new Member
         {
@@ -162,7 +260,7 @@ namespace MovieStore.business
     {
       using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
       {
-        return await db.People.Where(w=>w.Is_Active==true &&w.Role_Id==this.RoleId).Select(s => new Member
+        return await db.People.Where(w => w.Is_Active == true && w.Role_Id == this.RoleId).Select(s => new Member
         {
           Id = s.Id,
           FirstName = s.First_Name,
@@ -182,8 +280,15 @@ namespace MovieStore.business
         }).ToListAsync();
       }
     }
+    public int Authenticate()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        return db.People.Where(w => w.UserName.Equals(this.UserName) && w.Password.Equals(this.Password)).Select(s => s.Id).FirstOrDefault();
+      }
+    }
 
-    public async Task updateAddresses()
+    public async Task updateAddress()
     {
       using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
       {
@@ -191,12 +296,11 @@ namespace MovieStore.business
         if (address != null)
         {
           address.Address_Line_1 = this.Address.AddressLine1;
-          address.Address_Line_1 = this.Address.AddressLine1;
+          address.Address_Line_2 = this.Address.AddressLine2;
           address.City = this.Address.City;
           address.State = this.Address.State;
           address.Zip_Code = this.Address.ZipCode;
           address.Date_Updated = DateTime.Now;
-          address.Is_Primary = this.Address.IsPrimary;
 
           await db.SaveChangesAsync();
         }
