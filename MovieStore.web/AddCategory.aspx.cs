@@ -34,7 +34,7 @@ namespace MovieStore.web
         Name = this.tboxCategoryName.Text.Trim()
       };
       await category.addRecord();
-      Response.Redirect("Categories.aspx");
+      Response.Redirect("Categories.aspx", false);
 
     }
   }

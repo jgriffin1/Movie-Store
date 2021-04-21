@@ -34,7 +34,7 @@ namespace MovieStore.web
         Name = this.tboxCreditCardType.Text.Trim()
       };
       await creditCardType.addRecord();
-      Response.Redirect("CreditCardTypes.aspx");
+      Response.Redirect("CreditCardTypes.aspx", false);
 
     }
   }

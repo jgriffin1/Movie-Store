@@ -22,7 +22,41 @@ namespace MovieStore.business
     public int RoleId { get; set; }
     public Address Address { get; set; }
     public List<Phone> Phones { get; set; }
-
+    public Phone phone { get; set; }
+    public async Task<Member> getMember()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        return await db.People.Where(w => w.Id == this.Id).Select(s => new Member
+        {
+          Id = s.Id,
+          FirstName = s.First_Name,
+          MiddleName = s.Middle_Name,
+          LastName = s.Last_name,
+          ProfilePicture = s.Profile_Picture,
+        }).FirstOrDefaultAsync();
+      }
+    }
+    public async Task<List<Phone>> getPhones()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        return await db.Phones.Where(w => w.Person_Id == this.Id).Select(s => new Phone
+        {
+          Id = s.Id,
+          PhoneNumber = s.Number,
+          PhoneType = s.PhoneType.Name,
+          PhoneTypeId = s.Phone_Type_ID
+        }).ToListAsync();
+      }
+    }
+    public async Task<Phone> getPhone()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        return await db.Phones.Where(w => w.Id == this.phone.Id).Select(s => new Phone { }).FirstOrDefaultAsync();
+      }
+    }
     public override async Task addPerson()
     {
       using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
@@ -135,7 +169,19 @@ namespace MovieStore.business
         }
       }
     }
+    public async Task deletePhone()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        var phone = await db.Phones.Where(w => w.Id == this.phone.Id && w.Person_Id == this.Id).FirstOrDefaultAsync();
 
+        if (phone != null)
+        {
+          db.Phones.Remove(phone);
+          await db.SaveChangesAsync();
+        }
+      }
+    }
     public async Task setAddressAsPrimary()
     {
       using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
@@ -163,7 +209,7 @@ namespace MovieStore.business
             transaction.Rollback();
             throw e;
           }
-          
+
         }
 
       }
@@ -178,9 +224,11 @@ namespace MovieStore.business
           member.First_Name = this.FirstName;
           member.Middle_Name = this.MiddleName;
           member.Last_name = this.LastName;
-          member.Profile_Picture = this.ProfilePicture;
+          if (this.ProfilePicture != null)
+            member.Profile_Picture = this.ProfilePicture;
           member.Date_Updated = DateTime.Now;
         }
+        db.SaveChanges();
       }
     }
     public async Task updateSecurityInfo()
@@ -306,40 +354,35 @@ namespace MovieStore.business
         }
       }
     }
-    public async Task updatePhoneInfo()
+    public async Task updatePhone()
     {
       using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
       {
-        using (var transaction = db.Database.BeginTransaction())
+
+        var phone = await db.Phones.Where(w => w.Id == this.phone.Id).FirstOrDefaultAsync();
+        if (phone != null)
         {
-          try
-          {
-            var phones = await db.Phones.Where(w => w.Person_Id == this.Id).ToListAsync();
-            if (phones != null)
-            {
-              db.Phones.RemoveRange(phones);
-              await db.SaveChangesAsync();
-            }
-            if (this.Phones != null && this.Phones.Count > 0)
-            {
-              foreach (Phone item in this.Phones)
-              {
-                MovieStore.data.Phone phone = new MovieStore.data.Phone();
-                phone.Number = item.PhoneNumber;
-                phone.Phone_Type_ID = item.PhoneTypeId;
-                phone.Person_Id = this.Id;
-                db.Phones.Add(phone);
-                await db.SaveChangesAsync();
-              }
-            }
-            transaction.Commit();
-          }
-          catch (Exception ex)
-          {
-            transaction.Rollback();
-            throw ex;
-          }
+          phone.Date_Updated = DateTime.Now;
+          phone.Number = this.phone.PhoneNumber;
+          phone.Phone_Type_ID = this.phone.PhoneTypeId;
+
+          await db.SaveChangesAsync();
         }
+      }
+    }
+    public async Task addPhone()
+    {
+      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+      {
+        MovieStore.data.Phone phone = new MovieStore.data.Phone
+        {
+          Date_Created = DateTime.Now,
+          Number = this.phone.PhoneNumber,
+          Phone_Type_ID = this.phone.PhoneTypeId,
+          Person_Id = this.Id
+        };
+        db.Phones.Add(phone);
+        await db.SaveChangesAsync();
       }
     }
   }

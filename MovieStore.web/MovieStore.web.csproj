@@ -135,6 +135,7 @@
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
     <Content Include="CreditCardTypes.aspx" />
+    <Content Include="Error403.aspx" />
     <Content Include="Members.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="Error404.aspx" />
@@ -256,7 +257,9 @@
     <Content Include="UpdateAddressInfo.aspx" />
     <Content Include="UpdateCategory.aspx" />
     <Content Include="UpdateCreditCardType.aspx" />
+    <Content Include="UpdateMember.aspx" />
     <Content Include="UpdatePaymentType.aspx" />
+    <Content Include="UpdatePhoneInfo.aspx" />
     <Content Include="UpdatePhoneType.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -323,6 +326,13 @@
     </Compile>
     <Compile Include="CreditCardTypes.aspx.designer.cs">
       <DependentUpon>CreditCardTypes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error403.aspx.cs">
+      <DependentUpon>Error403.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error403.aspx.designer.cs">
+      <DependentUpon>Error403.aspx</DependentUpon>
     </Compile>
     <Compile Include="Members.aspx.cs">
       <DependentUpon>Members.aspx</DependentUpon>
@@ -419,12 +429,26 @@
     <Compile Include="UpdateCreditCardType.aspx.designer.cs">
       <DependentUpon>UpdateCreditCardType.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UpdateMember.aspx.cs">
+      <DependentUpon>UpdateMember.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateMember.aspx.designer.cs">
+      <DependentUpon>UpdateMember.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UpdatePaymentType.aspx.cs">
       <DependentUpon>UpdatePaymentType.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="UpdatePaymentType.aspx.designer.cs">
       <DependentUpon>UpdatePaymentType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UpdatePhoneInfo.aspx.cs">
+      <DependentUpon>UpdatePhoneInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdatePhoneInfo.aspx.designer.cs">
+      <DependentUpon>UpdatePhoneInfo.aspx</DependentUpon>
     </Compile>
     <Compile Include="UpdatePhoneType.aspx.cs">
       <DependentUpon>UpdatePhoneType.aspx</DependentUpon>

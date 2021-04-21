@@ -83,7 +83,7 @@ namespace MovieStore.web
 
       };
       await member.addPerson();
-      Response.Redirect("Members.aspx");
+      Response.Redirect("Members.aspx", false);
 
     }
 

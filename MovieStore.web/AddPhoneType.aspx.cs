@@ -25,7 +25,7 @@ namespace MovieStore.web
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-      Response.Redirect("PhoneTypes.aspx");
+      Response.Redirect("PhoneTypes.aspx", false);
     }
     private async Task SaveData()
     {
@@ -34,7 +34,7 @@ namespace MovieStore.web
         Name = this.tboxPhoneType.Text.Trim()
       };
       await phoneType.addRecord();
-      Response.Redirect("PhoneTypes.aspx");
+      Response.Redirect("PhoneTypes.aspx", false);
 
     }
   }

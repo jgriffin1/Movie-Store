@@ -51,13 +51,13 @@ namespace MovieStore.web
       };
 
       await PhoneType.updateRecord();
-      Response.Redirect("PhoneTypes.aspx");
+      Response.Redirect("PhoneTypes.aspx", false);
 
     }
      
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-      Response.Redirect("PhoneTypes.aspx");
+      Response.Redirect("PhoneTypes.aspx", false);
 
     }
   }

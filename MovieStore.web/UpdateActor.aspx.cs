@@ -53,7 +53,7 @@ namespace MovieStore.web
         };
 
         await actor.updatePerson();
-        Response.Redirect("Actors.aspx");
+        Response.Redirect("Actors.aspx", false);
       }
       
 

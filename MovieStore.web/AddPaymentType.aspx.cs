@@ -25,7 +25,7 @@ namespace MovieStore.web
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-      Response.Redirect("PaymentTypes.aspx");
+      Response.Redirect("PaymentTypes.aspx", false);
     }
     private async Task SaveData()
     {
@@ -34,7 +34,7 @@ namespace MovieStore.web
         Name = this.tboxPaymentType.Text.Trim()
       };
       await PaymentType.addRecord();
-      Response.Redirect("PaymentTypes.aspx");
+      Response.Redirect("PaymentTypes.aspx", false);
 
     }
   }

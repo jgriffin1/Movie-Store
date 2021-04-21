@@ -56,7 +56,7 @@ namespace MovieStore.web
       };
      
       await category.updateRecord();
-      Response.Redirect("Categories.aspx");
+      Response.Redirect("Categories.aspx", false);
 
     }
   }

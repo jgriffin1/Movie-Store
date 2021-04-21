@@ -1,12 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="UpdateAddressInfo.aspx.cs" Inherits="MovieStore.web.UpdateAddressInfo" Async="true" %>
 
 <asp:Content ID="cpUpdateAddressInfo" ContentPlaceHolderID="cphMain" runat="server">
-  <%--<script type="text/javascript">
-    function openModal() {
-      $('pnlDeleteModal').modal('show');
-    }
-  </script>--%>
-
   <asp:UpdatePanel ID="upnlAddressInfo" runat="server">
     <ContentTemplate>
       <div class="container">
@@ -65,7 +59,7 @@
                   </td>
                   <td data-label="Actions">
                     <asp:LinkButton ID="lbtnEditAddress" runat="server" Text="Edit" ToolTip="Edit"
-                      CommandArgument='<%#: Item. Id %>' CommandName="EditAddress" />
+                      CommandArgument='<%#: Item.Id %>' CommandName="EditAddress" />
                     |
               <asp:LinkButton ID="IbtnDeleteAddress" runat="server" Text="Delete" ToolTip="Delete"
                 CommandArgument='<%#: Item.Id %>' CommandName="DeleteAddress" />
@@ -230,16 +224,19 @@
       </div>
     </ContentTemplate>
   </asp:UpdatePanel>
-
-  <asp:Panel CssClass="modal fade" runat="server" ID="pnlDeleteModal" ClientIDMode="Static" TabIndex="-1" role="dialog" aria-labelledby="deleteModalLabel">
-    <div class="modal-dialog modal-xl" role="document">
+  
+  <asp:Panel CssClass="modal fade" runat="server" ID="pnlDeleteModal" TabIndex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
       <div class="modal-content">
         <asp:UpdatePanel ID="upnlDeleteModal" runat="server" UpdateMode="Conditional">
           <ContentTemplate>
             <div class="modal-header">
-              <h4 class="modal-title" id="deleteModalLabel">Delete Address
+              <h4 class="modal-header" id="deleteModalLabel">Delete Address
               </h4>
               <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to delete this address?</p>
             </div>
             <div class="modal-footer">
               <asp:Button ID="btnDelete" runat="server" Text="Delete" ToolTip="Delete" CausesValidation="false" OnClick="btnDelete_Click" CssClass="btn btn-danger btn-sm" />

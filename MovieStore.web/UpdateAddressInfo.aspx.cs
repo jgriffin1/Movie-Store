@@ -109,7 +109,7 @@ namespace MovieStore.web
     }
     protected void btnReturn_Click(object sender, EventArgs e)
     {
-      Response.Redirect("Members.aspx");
+      Response.Redirect("Members.aspx", false);
     }
 
     protected void btnDelete_Click(object sender, EventArgs e)
@@ -127,6 +127,11 @@ namespace MovieStore.web
         }
       };
       await member.deleteAddress();
+      await LoadData();
+      //ScriptManager.RegisterStartupScript(this.upnlDeleteModal, this.upnlDeleteModal.GetType(), "hide",
+      //  "$(function () { $('" + this.pnlDeleteModal.ClientID + "').modal('show'); });", true);
+
+      //this.upnlDeleteModal.Update();
     }
     protected void lvAddresses_ItemCommand(object sender, ListViewCommandEventArgs e)
     {
@@ -149,21 +154,11 @@ namespace MovieStore.web
 
         this.Page.RegisterAsyncTask(new PageAsyncTask(LoadData));
 
-        //try
-        //{
-        //   ScriptManager.RegisterStartupScript(this.pnlDeleteModal, this.pnlDeleteModal.GetType(), "show",
-        //  "$(function () { $('#" + this.pnlDeleteModal.ClientID + "').modal('show'); });", true);
-        //}catch(Exception ex)
-        //{
+        //Session.Add("addressId", e.CommandArgument.ToString().Trim());
+        //ScriptManager.RegisterStartupScript(this.upnlDeleteModal, this.upnlDeleteModal.GetType(), "show",
+        //  "$(function () { $('" + this.pnlDeleteModal.ClientID + "').modal('show'); });", true);
+        //this.upnlDeleteModal.Update();
 
-        //}
-
-        // ScriptManager.RegisterStartupScript(this.pnlDeleteModal, this.pnlDeleteModal.GetType(), "show",
-        //"function () {" +
-        //"  $('#" + this.pnlDeleteModal.ClientID + "').modal('show'); " +
-        //"}", true);
-        //ScriptManager.RegisterStartupScript(this.upnlDeleteModal, this.upnlDeleteModal.GetType(), "Pop", "openModal();", true);
-        //ScriptManager.RegisterClientScriptBlock(this.pnlDeleteModal, this.pnlDeleteModal.GetType(), "none", "<script>$('#" + this.pnlDeleteModal.ClientID + "').modal('show');</script>", false);
       }
       else if (e.CommandName.ToLower().Trim().Equals("setasprimaryaddress"))
       {

@@ -51,13 +51,13 @@ namespace MovieStore.web
       };
 
       await PaymentType.updateRecord();
-      Response.Redirect("PaymentTypes.aspx");
+      Response.Redirect("PaymentTypes.aspx", false);
 
     }
 
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-      Response.Redirect("PaymentTypes.aspx");
+      Response.Redirect("PaymentTypes.aspx", false);
 
     }
   }

@@ -37,7 +37,7 @@ namespace MovieStore.web
           LastName=tboxLastName.Text.Trim()
       }; 
       await actor.addPerson();
-      Response.Redirect("Actors.aspx");
+      Response.Redirect("Actors.aspx", false);
 
     }
   }

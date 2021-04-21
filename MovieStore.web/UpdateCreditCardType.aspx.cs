@@ -57,7 +57,7 @@ namespace MovieStore.web
       };
 
       await creditCardType.updateRecord();
-      Response.Redirect("CreditCardTypes.aspx");
+      Response.Redirect("CreditCardTypes.aspx", false);
 
     }
   }
