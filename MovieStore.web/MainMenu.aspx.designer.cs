@@ -7,20 +7,38 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MovieStore.web
+namespace MovieStore.Web
 {
 
 
-  public partial class MainMenu
-  {
+    public partial class MainMenu
+    {
 
-    /// <summary>
-    /// btnLogout control.
-    /// </summary>
-    /// <remarks>
-    /// Auto-generated field.
-    /// To modify move field declaration from designer file to code-behind file.
-    /// </remarks>
-    protected global::System.Web.UI.WebControls.Button btnLogout;
-  }
+        /// <summary>
+        /// phAdminMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phAdminMenu;
+
+        /// <summary>
+        /// phUserMenu control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder phUserMenu;
+
+        /// <summary>
+        /// btnLogout control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnLogout;
+    }
 }

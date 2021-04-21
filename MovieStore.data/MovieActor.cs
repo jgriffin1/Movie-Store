@@ -14,9 +14,9 @@ namespace MovieStore.data
     
     public partial class MovieActor
     {
-        public int Movie_Id { get; set; }
-        public int Actor_Id { get; set; }
-        public System.DateTime Date_Created { get; set; }
+        public int MOVIE_ID { get; set; }
+        public int ACTOR_ID { get; set; }
+        public System.DateTime DATE_CREATED { get; set; }
     
         public virtual Actor Actor { get; set; }
         public virtual Movie Movie { get; set; }

@@ -20,12 +20,12 @@ namespace MovieStore.data
             this.MovieActors = new HashSet<MovieActor>();
         }
     
-        public int Id { get; set; }
-        public string First_Name { get; set; }
-        public string Middle_Name { get; set; }
-        public string Last_Name { get; set; }
-        public System.DateTime Date_Created { get; set; }
-        public Nullable<System.DateTime> Date_Updated { get; set; }
+        public int ID { get; set; }
+        public string FIRST_NAME { get; set; }
+        public string MIDDLE_NAME { get; set; }
+        public string LAST_NAME { get; set; }
+        public System.DateTime DATE_CREATED { get; set; }
+        public Nullable<System.DateTime> DATE_UPDATED { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MovieActor> MovieActors { get; set; }

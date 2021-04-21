@@ -22,16 +22,16 @@ namespace MovieStore.data
             this.MovieRentals = new HashSet<MovieRental>();
         }
     
-        public int Id { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public int Release_Year { get; set; }
-        public string Rating { get; set; }
-        public int Number_Of_Copies { get; set; }
-        public byte[] Cover { get; set; }
-        public Nullable<bool> Is_Removed { get; set; }
-        public System.DateTime Date_Created { get; set; }
-        public Nullable<System.DateTime> Date_Updated { get; set; }
+        public int ID { get; set; }
+        public string TITLE { get; set; }
+        public string DESCRIPTION { get; set; }
+        public int RELEASE_YEAR { get; set; }
+        public string RATING { get; set; }
+        public int NUMBER_OF_COPIES { get; set; }
+        public byte[] COVER { get; set; }
+        public Nullable<bool> IS_REMOVED { get; set; }
+        public System.DateTime DATE_CREATED { get; set; }
+        public Nullable<System.DateTime> DATE_UPDATED { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MovieActor> MovieActors { get; set; }

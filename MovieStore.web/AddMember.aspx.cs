@@ -7,134 +7,168 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MovieStore.web
+namespace MovieStore.Web
 {
-  public partial class AddMember : System.Web.UI.Page
-  {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class AddMember : System.Web.UI.Page
     {
-      this.Page.RegisterAsyncTask(new PageAsyncTask(LoadDDLs));
-
-    }
-    private async Task LoadDDLs()
-    {
-      if (!this.Page.IsPostBack)
-      {
-        MovieStore.business.Role role = new MovieStore.business.Role();
-        this.ddlRoles.DataSource = await role.getRecords();
-        this.ddlRoles.DataBind();
-
-        this.ddlRoles.Items.Insert(0, new ListItem("", ""));
-
-        this.ddlPhoneTypes.DataSource = await new MovieStore.business.PhoneType().getRecords();
-        this.ddlPhoneTypes.DataBind();
-      }
-    }
-    protected void btnCancel_Click(object sender, EventArgs e)
-    {
-      Response.Redirect("Members.aspx");
-    }
-    protected void btnSave_Click(object sender, EventArgs e)
-    {
-      if (this.Page.IsValid)
-      {
-        this.Page.RegisterAsyncTask(new PageAsyncTask(SaveData));
-      }
-    }
-    public byte[] convertStreamToByteArray(Stream inputStream)
-    {
-      using (MemoryStream ms = new MemoryStream())
-      {
-        inputStream.CopyTo(ms);
-        return ms.ToArray();
-      }
-    }
-    private async Task SaveData()
-    {
-      MovieStore.business.Member member = new MovieStore.business.Member()
-      {
-        FirstName = tboxFirstName.Text.Trim(),
-        MiddleName = tboxMiddleName.Text.Trim(),
-        LastName = tboxLastName.Text.Trim(),
-        Address = new business.Address
+        protected override void OnPreRender(EventArgs e)
         {
-          AddressLine1 = tboxAddress1.Text.Trim(),
-          AddressLine2 = tboxAddress2.Text.Trim(),
-          City = tboxCity.Text.Trim(),
-          State = ddlStates.SelectedValue,
-          ZipCode = tboxZipCode.Text.Trim(),
-          IsPrimary = true
-        },
-        IsActive = true,
-        Password = tboxPassword.Text,
-        Phones = new List<business.Phone> {
-           new business.Phone
-           {
-             PhoneNumber = tboxPhoneNumber.Text.Trim(),
-             PhoneTypeId = Convert.ToInt32(ddlPhoneTypes.SelectedValue),
-
-           } 
-        },
-        ProfilePicture = convertStreamToByteArray(this.fupProfilePicture.PostedFile.InputStream),
-        RoleId = Convert.ToInt32(this.ddlRoles.SelectedValue.Trim()),
-        UserName = tboxUsername.Text.Trim(),
-
-
-
-      };
-      await member.addPerson();
-      Response.Redirect("Members.aspx", false);
-
-    }
-
-    protected void cvProfilePicture_ServerValidate(object source, ServerValidateEventArgs args)
-    {
-      int ImageMinumLength = 512;
-      int ImageMaximumLength = 200000;
-      if (!this.fupProfilePicture.PostedFile.InputStream.CanRead)
-      {
-        args.IsValid = false;
-      }
-      else
-      {
-        if (this.fupProfilePicture.PostedFile.ContentLength < ImageMinumLength)
-        {
-          args.IsValid = false;
+            this.tboxPassword.Attributes.Add("value", this.tboxPassword.Text);
+            base.OnPreRender(e);
         }
-        else
+
+        protected void Page_Load(object sender, EventArgs e)
         {
-          if (this.fupProfilePicture.PostedFile.ContentLength > ImageMaximumLength)
-          {
-            args.IsValid = false;
-          }
-          else
-          {
-            if (!string.Equals(this.fupProfilePicture.PostedFile.ContentType, "image/jpg", StringComparison.OrdinalIgnoreCase) &&
-              !string.Equals(this.fupProfilePicture.PostedFile.ContentType, "image/jpeg", StringComparison.OrdinalIgnoreCase) &&
-              !string.Equals(this.fupProfilePicture.PostedFile.ContentType, "image/png", StringComparison.OrdinalIgnoreCase) &&
-              !string.Equals(this.fupProfilePicture.PostedFile.ContentType, "image/gif", StringComparison.OrdinalIgnoreCase) &&
-              !string.Equals(this.fupProfilePicture.PostedFile.ContentType, "image/x-png", StringComparison.OrdinalIgnoreCase) &&
-              !string.Equals(this.fupProfilePicture.PostedFile.ContentType, "image/pjpeg", StringComparison.OrdinalIgnoreCase)
-              )
+            checkPermission();
+            this.Page.RegisterAsyncTask(new PageAsyncTask(LoadData));
+        }
+
+        private void checkPermission()
+        {
+            if (Session["roleName"] != null && !string.IsNullOrEmpty(Session["roleName"].ToString().Trim()))
             {
-              args.IsValid = false;
+                if (Session["roleName"].ToString().Trim().Equals("user", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    Response.Redirect("MainMenu.aspx", false);
+                }
+            }
+        }
+
+        private async Task LoadData()
+        {
+            if (!this.Page.IsPostBack)
+            {
+                MovieStore.Business.Role role = new MovieStore.Business.Role();
+
+                this.ddlRoles.DataSource = await role.getRecords();
+                this.ddlRoles.DataBind();
+
+                this.ddlRoles.Items.Insert(0, new ListItem("", ""));
+
+                MovieStore.Business.PhoneType phoneType = new MovieStore.Business.PhoneType();
+
+                this.ddlPhoneTypes.DataSource = await phoneType.getRecords();
+                this.ddlPhoneTypes.DataBind();
+
+                this.ddlPhoneTypes.Items.Insert(0, new ListItem("", ""));
+            }
+        }
+
+        protected void cvProfilePicture_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            int imageMinimumLength = 512;
+            int imageMaximumLength = 2000000;
+
+            if (!this.fupProfilePicture.PostedFile.InputStream.CanRead)
+            {
+                args.IsValid = false;
             }
             else
             {
-              var fileExtension = Path.GetExtension(this.fupProfilePicture.PostedFile.FileName);
+                if (this.fupProfilePicture.PostedFile.ContentLength < imageMinimumLength)
+                {
+                    args.IsValid = false;
+                    this.cvProfilePicture.ErrorMessage = "Image is too small.";
+                }
+                else
+                {
+                    if (this.fupProfilePicture.PostedFile.ContentLength > imageMaximumLength)
+                    {
+                        args.IsValid = false;
+                        this.cvProfilePicture.ErrorMessage = "Image is too big.";
+                    }
+                    else
+                    {
+                        if (!string.Equals(this.fupProfilePicture.PostedFile.ContentType, "image/jpg",
+                                            StringComparison.OrdinalIgnoreCase) &&
+                                    !string.Equals(this.fupProfilePicture.PostedFile.ContentType, "image/jpeg",
+                                    StringComparison.OrdinalIgnoreCase) &&
+                                    !string.Equals(this.fupProfilePicture.PostedFile.ContentType, "image/pjpeg",
+                                            StringComparison.OrdinalIgnoreCase) &&
+                                            !string.Equals(this.fupProfilePicture.PostedFile.ContentType, "image/gif",
+                                            StringComparison.OrdinalIgnoreCase) &&
+                                            !string.Equals(this.fupProfilePicture.PostedFile.ContentType, "image/x-png",
+                                            StringComparison.OrdinalIgnoreCase) &&
+                                            !string.Equals(this.fupProfilePicture.PostedFile.ContentType, "image/png",
+                                            StringComparison.OrdinalIgnoreCase))
+                        {
+                            args.IsValid = false;
+                            this.cvProfilePicture.ErrorMessage = "Invalid image type.";
+                        }
+                        else
+                        {
+                            string fileExtension = Path.GetExtension(this.fupProfilePicture.PostedFile.FileName);
 
-              if (!string.Equals(fileExtension, ".jpg", StringComparison.OrdinalIgnoreCase) &&
-                  !string.Equals(fileExtension, ".png", StringComparison.OrdinalIgnoreCase) &&
-                  !string.Equals(fileExtension, ".gif", StringComparison.OrdinalIgnoreCase) &&
-                  !string.Equals(fileExtension, ".jpeg", StringComparison.OrdinalIgnoreCase)
-                )
-              {
-                args.IsValid = false;
-              }
+                            if (!string.Equals(fileExtension, ".jpg", StringComparison.OrdinalIgnoreCase) &&
+                                !string.Equals(fileExtension, ".png", StringComparison.OrdinalIgnoreCase) &&
+                                !string.Equals(fileExtension, ".gif", StringComparison.OrdinalIgnoreCase) &&
+                                !string.Equals(fileExtension, ".jpeg", StringComparison.OrdinalIgnoreCase))
+                            {
+                                args.IsValid = false;
+                                this.cvProfilePicture.ErrorMessage = "Invalid image type.";
+                            }
+                        }
+                    }
+                }
             }
-          }
         }
-      }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Members.aspx");
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
+        {
+            this.Page.RegisterAsyncTask(new PageAsyncTask(SaveData));
+        }
+
+        private byte[] convertStremToByteArray(Stream inputStream)
+        {
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                inputStream.CopyTo(memoryStream);
+                return memoryStream.ToArray();
+            }
+        }
+
+        private async Task SaveData()
+        {
+            if (this.Page.IsValid)
+            {
+                MovieStore.Business.Member member = new MovieStore.Business.Member
+                {
+                    FirstName = this.tboxFirstName.Text.Trim(),
+                    MiddleName = this.tboxMiddleName.Text.Trim(),
+                    LastName = this.tboxLastName.Text.Trim(),
+                    UserName = this.tboxUsername.Text.Trim(),
+                    Password = this.tboxPassword.Text,
+                    IsActive = true,
+                    RoleId = Convert.ToInt32(this.ddlRoles.SelectedValue.Trim()),
+                    ProfilePicture = convertStremToByteArray(this.fupProfilePicture.PostedFile.InputStream),
+                    Address = new Business.Address
+                    {
+                        AddressLine1 = this.tboxAddress1.Text.Trim(),
+                        AddressLine2 = this.tboxAddress2.Text.Trim(),
+                        City = this.tboxCity.Text.Trim(),
+                        IsPrimary = true,
+                        ZipCode = this.tboxZipCode.Text.Trim(),
+                        State = this.ddlStates.SelectedValue.Trim()
+                    },
+                    Phones = new List<Business.Phone> 
+                    { 
+                        new Business.Phone 
+                        { 
+                             PhoneNumber = this.tboxPhoneNumber.Text.Trim(),
+                             PhoneTypeId = Convert.ToInt32(this.ddlPhoneTypes.SelectedValue.Trim())
+                        }
+                    }
+                };
+
+                await member.addPerson();
+
+                Response.Redirect("Members.aspx", false);
+            }
+        }
     }
-  }
 }

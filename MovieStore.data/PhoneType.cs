@@ -20,8 +20,8 @@ namespace MovieStore.data
             this.Phones = new HashSet<Phone>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int ID { get; set; }
+        public string NAME { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Phone> Phones { get; set; }

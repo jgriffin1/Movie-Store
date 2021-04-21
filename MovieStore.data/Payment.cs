@@ -20,12 +20,12 @@ namespace MovieStore.data
             this.PaymentInfoes = new HashSet<PaymentInfo>();
         }
     
-        public int Id { get; set; }
-        public int Payment_Type_Id { get; set; }
-        public decimal Amount_Due { get; set; }
-        public System.DateTime Payment_Date { get; set; }
-        public bool Is_Paid { get; set; }
-        public int Rental_Id { get; set; }
+        public int ID { get; set; }
+        public int PAYMENT_TYPE_ID { get; set; }
+        public decimal AMOUNT_DUE { get; set; }
+        public System.DateTime PAYMENT_DATE { get; set; }
+        public bool IS_PAID { get; set; }
+        public int RENTAL_ID { get; set; }
     
         public virtual PaymentType PaymentType { get; set; }
         public virtual Rental Rental { get; set; }

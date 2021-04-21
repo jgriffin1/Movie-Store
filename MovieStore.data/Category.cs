@@ -20,10 +20,10 @@ namespace MovieStore.data
             this.MovieCategories = new HashSet<MovieCategory>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public System.DateTime Date_Created { get; set; }
-        public Nullable<System.DateTime> Date_Updated { get; set; }
+        public int ID { get; set; }
+        public string NAME { get; set; }
+        public System.DateTime DATE_CREATED { get; set; }
+        public Nullable<System.DateTime> DATE_UPDATED { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MovieCategory> MovieCategories { get; set; }

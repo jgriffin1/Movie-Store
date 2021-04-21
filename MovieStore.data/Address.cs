@@ -14,16 +14,16 @@ namespace MovieStore.data
     
     public partial class Address
     {
-        public int Id { get; set; }
-        public int Person_Id { get; set; }
-        public bool Is_Primary { get; set; }
-        public string Address_Line_1 { get; set; }
-        public string Address_Line_2 { get; set; }
-        public string City { get; set; }
-        public string Zip_Code { get; set; }
-        public string State { get; set; }
-        public System.DateTime Date_Created { get; set; }
-        public Nullable<System.DateTime> Date_Updated { get; set; }
+        public int ID { get; set; }
+        public int PERSON_ID { get; set; }
+        public bool IS_PRIMARY { get; set; }
+        public string ADDRESS_LINE_1 { get; set; }
+        public string ADDRESS_LINE_2 { get; set; }
+        public string CITY { get; set; }
+        public string ZIP_CODE { get; set; }
+        public string STATE { get; set; }
+        public System.DateTime DATE_CREATED { get; set; }
+        public Nullable<System.DateTime> DATE_UPDATED { get; set; }
     
         public virtual Person Person { get; set; }
     }

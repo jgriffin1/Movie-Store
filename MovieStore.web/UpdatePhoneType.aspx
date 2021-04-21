@@ -1,41 +1,53 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="UpdatePhoneType.aspx.cs" Inherits="MovieStore.web.UpdatePhoneType" Async="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Main.Master" AutoEventWireup="true" CodeBehind="UpdatePhoneType.aspx.cs" Inherits="MovieStore.Web.UpdatePhoneType" Async="true" %>
+
 <asp:Content ID="cUpdatePhoneType" ContentPlaceHolderID="cphMain" runat="server">
-   <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h1>Update Phone Type</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Update Phone Type</h1>
 
-        <p>Please fill out all required fields and click save.</p>
+                <p>Please fill out all required fields and click update.</p>
 
-        <asp:ValidationSummary ID="vsError" HeaderText="The following error(s) occured:" runat="server" DisplayMode="BulletList" CssClass="alert alert-danger" />
-        <div class="card">
-          <div class="card-header">
-            Phone Types
-          </div>
-          <div class="card-body">
-            <div class="form-group">
-              <asp:Label ID="lblPhoneTypeName" runat="server" Text="* Phone Type Name" AssociatedControlID="tboxPhoneTypeName" />
-              <div class="input-group-mb-3">
-                <div class="input-group-prepend">
-                  <span class="input-group-text">
-                    <span class="fa fa-book"></span>
-                  </span>
+                <asp:ValidationSummary ID="vsError" HeaderText="The following error(s) occurred:" runat="server" ShowSummary="true"
+                    CssClass="alert alert-danger" DisplayMode="BulletList" /> 
 
-                  <asp:TextBox ID="tboxPhoneTypeName" runat="server" MaxLength="35" CssClass="form-control" />
-                  <ajaxToolkit:FilteredTextBoxExtender ID="ftbePhoneTypeName" runat="server" FilterMode="ValidChars" ValidChars="  " FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" TargetControlID="tboxPhoneTypeName" />
+                <div class="card">
+                    <div class="card-header">
+                        Phone Type Information
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <asp:Label ID="lblPhoneType" runat="server" Text="* Phone Type:" AssociatedControlID="tboxPhoneType" />
+
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <span class="fa fa-book"></span>
+                                    </span>
+                                </div>
+                                <asp:TextBox ID="tboxPhoneType" runat="server" CssClass="form-control" MaxLength="10" />
+                                <ajaxToolkit:FilteredTextBoxExtender ID="ftboxePhoneType" TargetControlID="tboxPhoneType" runat="server"
+                                     FilterMode="ValidChars" FilterType="LowercaseLetters, UppercaseLetters, Numbers, Custom" ValidChars=" " />
+                            </div>
+                            <asp:RegularExpressionValidator ID="revPhoneType" runat="server" ControlToValidate="tboxPhoneType"
+                                Display="None" EnableClientScript="true" ErrorMessage="Invalid phone type." ValidationExpression="^.{1,10}$" 
+                                CssClass="text-danger" SetFocusOnError="true" />
+                            <asp:RequiredFieldValidator ID="rfvPhoneType" runat="server" ControlToValidate="tboxPhoneType" 
+                                Display="None" EnableClientScript="true" ErrorMessage="Phone type is required." 
+                                CssClass="text-danger" SetFocusOnError="true" />
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <asp:RequiredFieldValidator ID="rfvPhoneTypeName" runat="server" ControlToValidate="tboxPhoneTypeName" ErrorMessage="Name is required." SetFocusOnError="true" EnableClientScript="true" Display="None" />
-            </div>
-          </div>
-        </div>
-        <div class="clearfix">&nbsp; </div>
 
-        <div class="form-group">
-          <asp:Button ID="btnCancel" runat="server" Text="Cancel" ToolTip="Cancel" CausesValidation="false" OnClick="btnCancel_Click" CssClass="btn btn-dark btn-sm" />
-          <asp:Button ID="btnUpdate" runat="server" Text="Save" ToolTip="save" OnClick="btnUpdate_Click" CssClass="btn btn-success btn-sm" />
+                <div class="clearfix">&nbsp;</div>
+
+                <div class="form-group">
+                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" CausesValidation="false" 
+                        ToolTip="Cancel" CssClass="btn btn-dark btn-sm" OnClick="btnCancel_Click" />
+                    <asp:Button ID="btnUpdate" runat="server" Text="Update" ToolTip="Update"
+                        CssClass="btn btn-success btn-sm" OnClick="btnUpdate_Click" />
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </asp:Content>

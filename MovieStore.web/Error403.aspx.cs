@@ -6,20 +6,20 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MovieStore.web
+namespace MovieStore.Web
 {
-  public partial class Error403 : System.Web.UI.Page
-  {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class Error403 : System.Web.UI.Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
 
-    }
+        }
 
-    protected void btnContinue_Click(object sender, EventArgs e)
-    {
-      Session.Clear();
-      FormsAuthentication.SignOut();
-      Response.Redirect("login.aspx");
+        protected void btnContinue_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            FormsAuthentication.SignOut();
+            Response.Redirect("Login.aspx");
+        }
     }
-  }
 }

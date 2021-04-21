@@ -5,57 +5,61 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieStore.business
+namespace MovieStore.Business
 {
-  public class CreditCardType : Base<CreditCardType>
-  {
-    /// <summary>
-    /// Add credit card record
-    /// </summary>
-    /// <returns></returns>
-    public override async Task addRecord()
+    public class CreditCardType : Base<CreditCardType>
     {
-      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
-      {
-        MovieStore.data.CreditCardType creditCardType = new MovieStore.data.CreditCardType();
-        creditCardType.Name = this.Name;
+        /// <summary>
+        /// Add Credit Card Type
+        /// </summary>
+        /// <returns></returns>
+        public override async Task addRecord()
+        {
+            using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+            {
+                MovieStore.data.CreditCardType creditCardType = new MovieStore.data.CreditCardType();
 
-        db.CreditCardTypes.Add(creditCardType);
-        await db.SaveChangesAsync();
-      }
-    }
+                creditCardType.NAME = this.Name;
 
-    public override async Task<CreditCardType> getRecord()
-    {
-      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
-      {
-        return await db.CreditCardTypes.Where(s=>s.Id==this.Id).Select(s => new CreditCardType { Id = s.Id, Name=s.Name}).FirstOrDefaultAsync();
-      }
-    }
+                db.CreditCardTypes.Add(creditCardType);
+                await db.SaveChangesAsync();
+            }
+        }
 
-    /// <summary>
-    /// get credit card type
-    /// </summary>
-    /// <returns></returns>
-    public override async Task<List<CreditCardType>> getRecords()
-    {
-      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
-      {
-        return await db.CreditCardTypes.Select(s => new CreditCardType { Id = s.Id, Name = s.Name }).ToListAsync();
-      }
+        public override async Task<CreditCardType> getRecord()
+        {
+            using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+            {
+                return await db.CreditCardTypes.Where(w => w.ID == this.Id).Select(s => new CreditCardType { Name = s.NAME }).FirstOrDefaultAsync();
+            }
+        }
+
+        /// <summary>
+        /// Get Credit Card Types
+        /// </summary>
+        /// <returns></returns>
+        public override async Task<List<CreditCardType>> getRecords()
+        {
+            using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+            {
+                return await db.CreditCardTypes.Select(s => new CreditCardType { Id = s.ID, Name = s.NAME }).ToListAsync();
+            }
+        }
+
+        /// <summary>
+        /// Update Credit Card Type
+        /// </summary>
+        /// <returns></returns>
+        public override async Task updateRecord()
+        {
+            using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+            {
+                var creditCardType = await db.CreditCardTypes.Where(w => w.ID == this.Id).Select(s => s).FirstOrDefaultAsync();
+
+                creditCardType.NAME = this.Name;
+
+                await db.SaveChangesAsync();
+            }
+        }
     }
-    /// <summary>
-    /// update credit card type
-    /// </summary>
-    /// <returns></returns>
-    public override async Task updateRecord()
-    {
-      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
-      {
-        var creditCardType = await db.CreditCardTypes.Where(w => w.Id == this.Id).Select(s => s).FirstOrDefaultAsync();
-        creditCardType.Name = this.Name;
-        await db.SaveChangesAsync();
-      }
-    }
-  }
 }

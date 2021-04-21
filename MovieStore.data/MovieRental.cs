@@ -14,9 +14,9 @@ namespace MovieStore.data
     
     public partial class MovieRental
     {
-        public int Rental_Id { get; set; }
-        public int Movie_Id { get; set; }
-        public Nullable<System.DateTime> Return_Date { get; set; }
+        public int RENTAL_ID { get; set; }
+        public int MOVIE_ID { get; set; }
+        public Nullable<System.DateTime> RETURN_DATE { get; set; }
     
         public virtual Movie Movie { get; set; }
         public virtual Rental Rental { get; set; }

@@ -14,14 +14,14 @@ namespace MovieStore.data
     
     public partial class PaymentInfo
     {
-        public int Id { get; set; }
-        public string Rep_Id { get; set; }
-        public string Payment_Status { get; set; }
-        public Nullable<bool> Is_Void { get; set; }
-        public System.DateTime Payment_Date { get; set; }
-        public Nullable<int> Check_Number { get; set; }
-        public Nullable<int> Credit_Card_Type_Id { get; set; }
-        public int Payment_Id { get; set; }
+        public int ID { get; set; }
+        public string REF_ID { get; set; }
+        public string PAYMENT_STATUS { get; set; }
+        public Nullable<bool> IS_VOID { get; set; }
+        public System.DateTime PAYMENT_DATE { get; set; }
+        public Nullable<int> CHECK_NUMBER { get; set; }
+        public Nullable<int> CREDIT_CARD_TYPE_ID { get; set; }
+        public int PAYMENT_ID { get; set; }
     
         public virtual CreditCardType CreditCardType { get; set; }
         public virtual Payment Payment { get; set; }

@@ -4,170 +4,170 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MovieStoreModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Actor">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="First_Name" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Middle_Name" Type="varchar" MaxLength="30" />
-          <Property Name="Last_Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Date_Created" Type="datetime" Nullable="false" />
-          <Property Name="Date_Updated" Type="datetime" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MIDDLE_NAME" Type="varchar" MaxLength="30" />
+          <Property Name="LAST_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DATE_CREATED" Type="datetime" Nullable="false" />
+          <Property Name="DATE_UPDATED" Type="datetime" />
         </EntityType>
         <EntityType Name="Address">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Person_Id" Type="int" Nullable="false" />
-          <Property Name="Is_Primary" Type="bit" Nullable="false" />
-          <Property Name="Address_Line_1" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="Address_Line_2" Type="varchar" MaxLength="500" />
-          <Property Name="City" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Zip_Code" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="State" Type="varchar" MaxLength="2" Nullable="false" />
-          <Property Name="Date_Created" Type="datetime" Nullable="false" />
-          <Property Name="Date_Updated" Type="datetime" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PERSON_ID" Type="int" Nullable="false" />
+          <Property Name="IS_PRIMARY" Type="bit" Nullable="false" />
+          <Property Name="ADDRESS_LINE_1" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="ADDRESS_LINE_2" Type="varchar" MaxLength="500" />
+          <Property Name="CITY" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ZIP_CODE" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="STATE" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="DATE_CREATED" Type="datetime" Nullable="false" />
+          <Property Name="DATE_UPDATED" Type="datetime" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="35" Nullable="false" />
-          <Property Name="Date_Created" Type="datetime" Nullable="false" />
-          <Property Name="Date_Updated" Type="datetime" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="35" Nullable="false" />
+          <Property Name="DATE_CREATED" Type="datetime" Nullable="false" />
+          <Property Name="DATE_UPDATED" Type="datetime" />
         </EntityType>
         <EntityType Name="CreditCardType">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="Movie">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="varchar" MaxLength="200" Nullable="false" />
-          <Property Name="Description" Type="text" />
-          <Property Name="Release_Year" Type="int" Nullable="false" />
-          <Property Name="Rating" Type="varchar" MaxLength="2" />
-          <Property Name="Number_Of_Copies" Type="int" Nullable="false" />
-          <Property Name="Cover" Type="image" />
-          <Property Name="Is_Removed" Type="bit" />
-          <Property Name="Date_Created" Type="datetime" Nullable="false" />
-          <Property Name="Date_Updated" Type="datetime" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TITLE" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="text" />
+          <Property Name="RELEASE_YEAR" Type="int" Nullable="false" />
+          <Property Name="RATING" Type="varchar" MaxLength="2" />
+          <Property Name="NUMBER_OF_COPIES" Type="int" Nullable="false" />
+          <Property Name="COVER" Type="image" />
+          <Property Name="IS_REMOVED" Type="bit" />
+          <Property Name="DATE_CREATED" Type="datetime" Nullable="false" />
+          <Property Name="DATE_UPDATED" Type="datetime" />
         </EntityType>
         <EntityType Name="MovieActor">
           <Key>
-            <PropertyRef Name="Movie_Id" />
-            <PropertyRef Name="Actor_Id" />
+            <PropertyRef Name="MOVIE_ID" />
+            <PropertyRef Name="ACTOR_ID" />
           </Key>
-          <Property Name="Movie_Id" Type="int" Nullable="false" />
-          <Property Name="Actor_Id" Type="int" Nullable="false" />
-          <Property Name="Date_Created" Type="datetime" Nullable="false" />
+          <Property Name="MOVIE_ID" Type="int" Nullable="false" />
+          <Property Name="ACTOR_ID" Type="int" Nullable="false" />
+          <Property Name="DATE_CREATED" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="MovieCategory">
           <Key>
-            <PropertyRef Name="Movie_Id" />
-            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="MOVIE_ID" />
+            <PropertyRef Name="CATEGORY_ID" />
           </Key>
-          <Property Name="Movie_Id" Type="int" Nullable="false" />
-          <Property Name="Category_Id" Type="int" Nullable="false" />
-          <Property Name="Date_Created" Type="datetime" Nullable="false" />
+          <Property Name="MOVIE_ID" Type="int" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="int" Nullable="false" />
+          <Property Name="DATE_CREATED" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="MovieRental">
           <Key>
-            <PropertyRef Name="Rental_Id" />
-            <PropertyRef Name="Movie_Id" />
+            <PropertyRef Name="RENTAL_ID" />
+            <PropertyRef Name="MOVIE_ID" />
           </Key>
-          <Property Name="Rental_Id" Type="int" Nullable="false" />
-          <Property Name="Movie_Id" Type="int" Nullable="false" />
-          <Property Name="Return_Date" Type="datetime" />
+          <Property Name="RENTAL_ID" Type="int" Nullable="false" />
+          <Property Name="MOVIE_ID" Type="int" Nullable="false" />
+          <Property Name="RETURN_DATE" Type="datetime" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Payment_Type_Id" Type="int" Nullable="false" />
-          <Property Name="Amount_Due" Type="money" Nullable="false" />
-          <Property Name="Payment_Date" Type="datetime" Nullable="false" />
-          <Property Name="Is_Paid" Type="bit" Nullable="false" />
-          <Property Name="Rental_Id" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PAYMENT_TYPE_ID" Type="int" Nullable="false" />
+          <Property Name="AMOUNT_DUE" Type="money" Nullable="false" />
+          <Property Name="PAYMENT_DATE" Type="datetime" Nullable="false" />
+          <Property Name="IS_PAID" Type="bit" Nullable="false" />
+          <Property Name="RENTAL_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PaymentInfo">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Rep_Id" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Payment_Status" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="Is_Void" Type="bit" />
-          <Property Name="Payment_Date" Type="datetime" Nullable="false" />
-          <Property Name="Check_Number" Type="int" />
-          <Property Name="Credit_Card_Type_Id" Type="int" />
-          <Property Name="Payment_Id" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="REF_ID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PAYMENT_STATUS" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="IS_VOID" Type="bit" />
+          <Property Name="PAYMENT_DATE" Type="datetime" Nullable="false" />
+          <Property Name="CHECK_NUMBER" Type="int" />
+          <Property Name="CREDIT_CARD_TYPE_ID" Type="int" />
+          <Property Name="PAYMENT_ID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PaymentType">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Role_Id" Type="int" Nullable="false" />
-          <Property Name="First_Name" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Middle_Name" Type="varchar" MaxLength="30" />
-          <Property Name="Last_name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="UserName" Type="varchar" MaxLength="30" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="Is_Active" Type="bit" Nullable="false" />
-          <Property Name="Profile_Picture" Type="image" />
-          <Property Name="Date_Created" Type="date" Nullable="false" />
-          <Property Name="Date_Updated" Type="date" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ROLE_ID" Type="int" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MIDDLE_NAME" Type="varchar" MaxLength="30" />
+          <Property Name="LAST_NAME" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="PROFILE_PICTURE" Type="image" />
+          <Property Name="DATE_CREATED" Type="date" Nullable="false" />
+          <Property Name="DATE_UPDATED" Type="date" />
         </EntityType>
         <EntityType Name="Phone">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Person_Id" Type="int" Nullable="false" />
-          <Property Name="Phone_Type_ID" Type="int" Nullable="false" />
-          <Property Name="Number" Type="varchar" MaxLength="14" Nullable="false" />
-          <Property Name="Date_Created" Type="datetime" Nullable="false" />
-          <Property Name="Date_Updated" Type="datetime" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PERSON_ID" Type="int" Nullable="false" />
+          <Property Name="PHONE_TYPE_ID" Type="int" Nullable="false" />
+          <Property Name="NUMBER" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="DATE_CREATED" Type="datetime" Nullable="false" />
+          <Property Name="DATE_UPDATED" Type="datetime" />
         </EntityType>
         <EntityType Name="PhoneType">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Rental">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Customer_Id" Type="int" Nullable="false" />
-          <Property Name="Rental_Date" Type="datetime" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+          <Property Name="RENTAL_DATE" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="10" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NAME" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -186,10 +186,10 @@
           <End Role="Address" Type="Self.Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Address">
-              <PropertyRef Name="Person_Id" />
+              <PropertyRef Name="PERSON_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -198,10 +198,10 @@
           <End Role="MovieActor" Type="Self.MovieActor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Actor">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="MovieActor">
-              <PropertyRef Name="Actor_Id" />
+              <PropertyRef Name="ACTOR_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -210,10 +210,10 @@
           <End Role="MovieActor" Type="Self.MovieActor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Movie">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="MovieActor">
-              <PropertyRef Name="Movie_Id" />
+              <PropertyRef Name="MOVIE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -222,10 +222,10 @@
           <End Role="MovieCategory" Type="Self.MovieCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="MovieCategory">
-              <PropertyRef Name="Category_Id" />
+              <PropertyRef Name="CATEGORY_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -234,10 +234,10 @@
           <End Role="MovieCategory" Type="Self.MovieCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Movie">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="MovieCategory">
-              <PropertyRef Name="Movie_Id" />
+              <PropertyRef Name="MOVIE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -246,10 +246,10 @@
           <End Role="MovieRental" Type="Self.MovieRental" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Movie">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="MovieRental">
-              <PropertyRef Name="Movie_Id" />
+              <PropertyRef Name="MOVIE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -258,10 +258,10 @@
           <End Role="MovieRental" Type="Self.MovieRental" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Rental">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="MovieRental">
-              <PropertyRef Name="Rental_Id" />
+              <PropertyRef Name="RENTAL_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -270,10 +270,10 @@
           <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentType">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Payment">
-              <PropertyRef Name="Payment_Type_Id" />
+              <PropertyRef Name="PAYMENT_TYPE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -282,10 +282,10 @@
           <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Rental">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Payment">
-              <PropertyRef Name="Rental_Id" />
+              <PropertyRef Name="RENTAL_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -294,10 +294,10 @@
           <End Role="PaymentInfo" Type="Self.PaymentInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CreditCardType">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="PaymentInfo">
-              <PropertyRef Name="Credit_Card_Type_Id" />
+              <PropertyRef Name="CREDIT_CARD_TYPE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -306,10 +306,10 @@
           <End Role="PaymentInfo" Type="Self.PaymentInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Payment">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="PaymentInfo">
-              <PropertyRef Name="Payment_Id" />
+              <PropertyRef Name="PAYMENT_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -318,10 +318,10 @@
           <End Role="Person" Type="Self.Person" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Person">
-              <PropertyRef Name="Role_Id" />
+              <PropertyRef Name="ROLE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -330,10 +330,10 @@
           <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Phone">
-              <PropertyRef Name="Person_Id" />
+              <PropertyRef Name="PERSON_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -342,10 +342,10 @@
           <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PhoneType">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Phone">
-              <PropertyRef Name="Phone_Type_ID" />
+              <PropertyRef Name="PHONE_TYPE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -354,14 +354,14 @@
           <End Role="Rental" Type="Self.Rental" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Rental">
-              <PropertyRef Name="Customer_Id" />
+              <PropertyRef Name="CUSTOMER_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MovieStoreModelStoreContainer">
+        <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Actor" EntityType="Self.Actor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
@@ -443,82 +443,82 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MovieStoreModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="MovieStoreEntities" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="sysdiagrams" EntityType="MovieStoreModel.sysdiagram" />
-          <EntitySet Name="Actors" EntityType="MovieStoreModel.Actor" />
-          <EntitySet Name="Addresses" EntityType="MovieStoreModel.Address" />
-          <EntitySet Name="Categories" EntityType="MovieStoreModel.Category" />
-          <EntitySet Name="CreditCardTypes" EntityType="MovieStoreModel.CreditCardType" />
-          <EntitySet Name="Movies" EntityType="MovieStoreModel.Movie" />
-          <EntitySet Name="MovieActors" EntityType="MovieStoreModel.MovieActor" />
-          <EntitySet Name="MovieCategories" EntityType="MovieStoreModel.MovieCategory" />
-          <EntitySet Name="MovieRentals" EntityType="MovieStoreModel.MovieRental" />
-          <EntitySet Name="Payments" EntityType="MovieStoreModel.Payment" />
-          <EntitySet Name="PaymentInfoes" EntityType="MovieStoreModel.PaymentInfo" />
-          <EntitySet Name="PaymentTypes" EntityType="MovieStoreModel.PaymentType" />
-          <EntitySet Name="People" EntityType="MovieStoreModel.Person" />
-          <EntitySet Name="Phones" EntityType="MovieStoreModel.Phone" />
-          <EntitySet Name="PhoneTypes" EntityType="MovieStoreModel.PhoneType" />
-          <EntitySet Name="Rentals" EntityType="MovieStoreModel.Rental" />
-          <EntitySet Name="Roles" EntityType="MovieStoreModel.Role" />
-          <AssociationSet Name="FK_MovieActor_Actor" Association="MovieStoreModel.FK_MovieActor_Actor">
+          <EntitySet Name="sysdiagrams" EntityType="Model.sysdiagram" />
+          <EntitySet Name="Actors" EntityType="Model.Actor" />
+          <EntitySet Name="Addresses" EntityType="Model.Address" />
+          <EntitySet Name="Categories" EntityType="Model.Category" />
+          <EntitySet Name="CreditCardTypes" EntityType="Model.CreditCardType" />
+          <EntitySet Name="Movies" EntityType="Model.Movie" />
+          <EntitySet Name="MovieActors" EntityType="Model.MovieActor" />
+          <EntitySet Name="MovieCategories" EntityType="Model.MovieCategory" />
+          <EntitySet Name="MovieRentals" EntityType="Model.MovieRental" />
+          <EntitySet Name="Payments" EntityType="Model.Payment" />
+          <EntitySet Name="PaymentInfoes" EntityType="Model.PaymentInfo" />
+          <EntitySet Name="PaymentTypes" EntityType="Model.PaymentType" />
+          <EntitySet Name="People" EntityType="Model.Person" />
+          <EntitySet Name="Phones" EntityType="Model.Phone" />
+          <EntitySet Name="PhoneTypes" EntityType="Model.PhoneType" />
+          <EntitySet Name="Rentals" EntityType="Model.Rental" />
+          <EntitySet Name="Roles" EntityType="Model.Role" />
+          <AssociationSet Name="FK_MovieActor_Actor" Association="Model.FK_MovieActor_Actor">
             <End Role="Actor" EntitySet="Actors" />
             <End Role="MovieActor" EntitySet="MovieActors" />
           </AssociationSet>
-          <AssociationSet Name="FK_Address_Person" Association="MovieStoreModel.FK_Address_Person">
+          <AssociationSet Name="FK_Address_Person" Association="Model.FK_Address_Person">
             <End Role="Person" EntitySet="People" />
             <End Role="Address" EntitySet="Addresses" />
           </AssociationSet>
-          <AssociationSet Name="FK_MovieCategory_Category" Association="MovieStoreModel.FK_MovieCategory_Category">
+          <AssociationSet Name="FK_MovieCategory_Category" Association="Model.FK_MovieCategory_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="MovieCategory" EntitySet="MovieCategories" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentInfo_CreditCardType" Association="MovieStoreModel.FK_PaymentInfo_CreditCardType">
+          <AssociationSet Name="FK_PaymentInfo_CreditCardType" Association="Model.FK_PaymentInfo_CreditCardType">
             <End Role="CreditCardType" EntitySet="CreditCardTypes" />
             <End Role="PaymentInfo" EntitySet="PaymentInfoes" />
           </AssociationSet>
-          <AssociationSet Name="FK_MovieActor_Movie" Association="MovieStoreModel.FK_MovieActor_Movie">
+          <AssociationSet Name="FK_MovieActor_Movie" Association="Model.FK_MovieActor_Movie">
             <End Role="Movie" EntitySet="Movies" />
             <End Role="MovieActor" EntitySet="MovieActors" />
           </AssociationSet>
-          <AssociationSet Name="FK_MovieCategory_Movie" Association="MovieStoreModel.FK_MovieCategory_Movie">
+          <AssociationSet Name="FK_MovieCategory_Movie" Association="Model.FK_MovieCategory_Movie">
             <End Role="Movie" EntitySet="Movies" />
             <End Role="MovieCategory" EntitySet="MovieCategories" />
           </AssociationSet>
-          <AssociationSet Name="FK_MovieRental_Movie" Association="MovieStoreModel.FK_MovieRental_Movie">
+          <AssociationSet Name="FK_MovieRental_Movie" Association="Model.FK_MovieRental_Movie">
             <End Role="Movie" EntitySet="Movies" />
             <End Role="MovieRental" EntitySet="MovieRentals" />
           </AssociationSet>
-          <AssociationSet Name="FK_MovieRental_Rental" Association="MovieStoreModel.FK_MovieRental_Rental">
+          <AssociationSet Name="FK_MovieRental_Rental" Association="Model.FK_MovieRental_Rental">
             <End Role="Rental" EntitySet="Rentals" />
             <End Role="MovieRental" EntitySet="MovieRentals" />
           </AssociationSet>
-          <AssociationSet Name="FK_Payment_PaymentType" Association="MovieStoreModel.FK_Payment_PaymentType">
+          <AssociationSet Name="FK_Payment_PaymentType" Association="Model.FK_Payment_PaymentType">
             <End Role="PaymentType" EntitySet="PaymentTypes" />
             <End Role="Payment" EntitySet="Payments" />
           </AssociationSet>
-          <AssociationSet Name="FK_Payment_Rental" Association="MovieStoreModel.FK_Payment_Rental">
+          <AssociationSet Name="FK_Payment_Rental" Association="Model.FK_Payment_Rental">
             <End Role="Rental" EntitySet="Rentals" />
             <End Role="Payment" EntitySet="Payments" />
           </AssociationSet>
-          <AssociationSet Name="FK_PaymentInfo_Payment" Association="MovieStoreModel.FK_PaymentInfo_Payment">
+          <AssociationSet Name="FK_PaymentInfo_Payment" Association="Model.FK_PaymentInfo_Payment">
             <End Role="Payment" EntitySet="Payments" />
             <End Role="PaymentInfo" EntitySet="PaymentInfoes" />
           </AssociationSet>
-          <AssociationSet Name="FK_Person_Role" Association="MovieStoreModel.FK_Person_Role">
+          <AssociationSet Name="FK_Person_Role" Association="Model.FK_Person_Role">
             <End Role="Role" EntitySet="Roles" />
             <End Role="Person" EntitySet="People" />
           </AssociationSet>
-          <AssociationSet Name="FK_Phone_Person" Association="MovieStoreModel.FK_Phone_Person">
+          <AssociationSet Name="FK_Phone_Person" Association="Model.FK_Phone_Person">
             <End Role="Person" EntitySet="People" />
             <End Role="Phone" EntitySet="Phones" />
           </AssociationSet>
-          <AssociationSet Name="FK_Rental_Person" Association="MovieStoreModel.FK_Rental_Person">
+          <AssociationSet Name="FK_Rental_Person" Association="Model.FK_Rental_Person">
             <End Role="Person" EntitySet="People" />
             <End Role="Rental" EntitySet="Rentals" />
           </AssociationSet>
-          <AssociationSet Name="FK_Phone_PhoneType" Association="MovieStoreModel.FK_Phone_PhoneType">
+          <AssociationSet Name="FK_Phone_PhoneType" Association="Model.FK_Phone_PhoneType">
             <End Role="PhoneType" EntitySet="PhoneTypes" />
             <End Role="Phone" EntitySet="Phones" />
           </AssociationSet>
@@ -535,377 +535,377 @@
         </EntityType>
         <EntityType Name="Actor">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="First_Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Middle_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Last_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Date_Updated" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="MovieActors" Relationship="MovieStoreModel.FK_MovieActor_Actor" FromRole="Actor" ToRole="MovieActor" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIRST_NAME" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MIDDLE_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_CREATED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_UPDATED" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MovieActors" Relationship="Model.FK_MovieActor_Actor" FromRole="Actor" ToRole="MovieActor" />
         </EntityType>
         <EntityType Name="Address">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Person_Id" Type="Int32" Nullable="false" />
-          <Property Name="Is_Primary" Type="Boolean" Nullable="false" />
-          <Property Name="Address_Line_1" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Address_Line_2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Zip_Code" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="State" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Date_Updated" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Person" Relationship="MovieStoreModel.FK_Address_Person" FromRole="Address" ToRole="Person" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PERSON_ID" Type="Int32" Nullable="false" />
+          <Property Name="IS_PRIMARY" Type="Boolean" Nullable="false" />
+          <Property Name="ADDRESS_LINE_1" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ADDRESS_LINE_2" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CITY" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ZIP_CODE" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="STATE" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_CREATED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_UPDATED" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Address_Person" FromRole="Address" ToRole="Person" />
         </EntityType>
         <EntityType Name="Category">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
-          <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Date_Updated" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="MovieCategories" Relationship="MovieStoreModel.FK_MovieCategory_Category" FromRole="Category" ToRole="MovieCategory" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_CREATED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_UPDATED" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MovieCategories" Relationship="Model.FK_MovieCategory_Category" FromRole="Category" ToRole="MovieCategory" />
         </EntityType>
         <EntityType Name="CreditCardType">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="PaymentInfoes" Relationship="MovieStoreModel.FK_PaymentInfo_CreditCardType" FromRole="CreditCardType" ToRole="PaymentInfo" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PaymentInfoes" Relationship="Model.FK_PaymentInfo_CreditCardType" FromRole="CreditCardType" ToRole="PaymentInfo" />
         </EntityType>
         <EntityType Name="Movie">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Release_Year" Type="Int32" Nullable="false" />
-          <Property Name="Rating" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="Number_Of_Copies" Type="Int32" Nullable="false" />
-          <Property Name="Cover" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Is_Removed" Type="Boolean" />
-          <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Date_Updated" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="MovieActors" Relationship="MovieStoreModel.FK_MovieActor_Movie" FromRole="Movie" ToRole="MovieActor" />
-          <NavigationProperty Name="MovieCategories" Relationship="MovieStoreModel.FK_MovieCategory_Movie" FromRole="Movie" ToRole="MovieCategory" />
-          <NavigationProperty Name="MovieRentals" Relationship="MovieStoreModel.FK_MovieRental_Movie" FromRole="Movie" ToRole="MovieRental" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TITLE" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="RELEASE_YEAR" Type="Int32" Nullable="false" />
+          <Property Name="RATING" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="NUMBER_OF_COPIES" Type="Int32" Nullable="false" />
+          <Property Name="COVER" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="IS_REMOVED" Type="Boolean" />
+          <Property Name="DATE_CREATED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_UPDATED" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MovieActors" Relationship="Model.FK_MovieActor_Movie" FromRole="Movie" ToRole="MovieActor" />
+          <NavigationProperty Name="MovieCategories" Relationship="Model.FK_MovieCategory_Movie" FromRole="Movie" ToRole="MovieCategory" />
+          <NavigationProperty Name="MovieRentals" Relationship="Model.FK_MovieRental_Movie" FromRole="Movie" ToRole="MovieRental" />
         </EntityType>
         <EntityType Name="MovieActor">
           <Key>
-            <PropertyRef Name="Movie_Id" />
-            <PropertyRef Name="Actor_Id" />
+            <PropertyRef Name="MOVIE_ID" />
+            <PropertyRef Name="ACTOR_ID" />
           </Key>
-          <Property Name="Movie_Id" Type="Int32" Nullable="false" />
-          <Property Name="Actor_Id" Type="Int32" Nullable="false" />
-          <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Actor" Relationship="MovieStoreModel.FK_MovieActor_Actor" FromRole="MovieActor" ToRole="Actor" />
-          <NavigationProperty Name="Movie" Relationship="MovieStoreModel.FK_MovieActor_Movie" FromRole="MovieActor" ToRole="Movie" />
+          <Property Name="MOVIE_ID" Type="Int32" Nullable="false" />
+          <Property Name="ACTOR_ID" Type="Int32" Nullable="false" />
+          <Property Name="DATE_CREATED" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Actor" Relationship="Model.FK_MovieActor_Actor" FromRole="MovieActor" ToRole="Actor" />
+          <NavigationProperty Name="Movie" Relationship="Model.FK_MovieActor_Movie" FromRole="MovieActor" ToRole="Movie" />
         </EntityType>
         <EntityType Name="MovieCategory">
           <Key>
-            <PropertyRef Name="Movie_Id" />
-            <PropertyRef Name="Category_Id" />
+            <PropertyRef Name="MOVIE_ID" />
+            <PropertyRef Name="CATEGORY_ID" />
           </Key>
-          <Property Name="Movie_Id" Type="Int32" Nullable="false" />
-          <Property Name="Category_Id" Type="Int32" Nullable="false" />
-          <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Category" Relationship="MovieStoreModel.FK_MovieCategory_Category" FromRole="MovieCategory" ToRole="Category" />
-          <NavigationProperty Name="Movie" Relationship="MovieStoreModel.FK_MovieCategory_Movie" FromRole="MovieCategory" ToRole="Movie" />
+          <Property Name="MOVIE_ID" Type="Int32" Nullable="false" />
+          <Property Name="CATEGORY_ID" Type="Int32" Nullable="false" />
+          <Property Name="DATE_CREATED" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Category" Relationship="Model.FK_MovieCategory_Category" FromRole="MovieCategory" ToRole="Category" />
+          <NavigationProperty Name="Movie" Relationship="Model.FK_MovieCategory_Movie" FromRole="MovieCategory" ToRole="Movie" />
         </EntityType>
         <EntityType Name="MovieRental">
           <Key>
-            <PropertyRef Name="Rental_Id" />
-            <PropertyRef Name="Movie_Id" />
+            <PropertyRef Name="RENTAL_ID" />
+            <PropertyRef Name="MOVIE_ID" />
           </Key>
-          <Property Name="Rental_Id" Type="Int32" Nullable="false" />
-          <Property Name="Movie_Id" Type="Int32" Nullable="false" />
-          <Property Name="Return_Date" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Movie" Relationship="MovieStoreModel.FK_MovieRental_Movie" FromRole="MovieRental" ToRole="Movie" />
-          <NavigationProperty Name="Rental" Relationship="MovieStoreModel.FK_MovieRental_Rental" FromRole="MovieRental" ToRole="Rental" />
+          <Property Name="RENTAL_ID" Type="Int32" Nullable="false" />
+          <Property Name="MOVIE_ID" Type="Int32" Nullable="false" />
+          <Property Name="RETURN_DATE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Movie" Relationship="Model.FK_MovieRental_Movie" FromRole="MovieRental" ToRole="Movie" />
+          <NavigationProperty Name="Rental" Relationship="Model.FK_MovieRental_Rental" FromRole="MovieRental" ToRole="Rental" />
         </EntityType>
         <EntityType Name="Payment">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Payment_Type_Id" Type="Int32" Nullable="false" />
-          <Property Name="Amount_Due" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-          <Property Name="Payment_Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Is_Paid" Type="Boolean" Nullable="false" />
-          <Property Name="Rental_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="PaymentType" Relationship="MovieStoreModel.FK_Payment_PaymentType" FromRole="Payment" ToRole="PaymentType" />
-          <NavigationProperty Name="Rental" Relationship="MovieStoreModel.FK_Payment_Rental" FromRole="Payment" ToRole="Rental" />
-          <NavigationProperty Name="PaymentInfoes" Relationship="MovieStoreModel.FK_PaymentInfo_Payment" FromRole="Payment" ToRole="PaymentInfo" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PAYMENT_TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="AMOUNT_DUE" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="PAYMENT_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IS_PAID" Type="Boolean" Nullable="false" />
+          <Property Name="RENTAL_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PaymentType" Relationship="Model.FK_Payment_PaymentType" FromRole="Payment" ToRole="PaymentType" />
+          <NavigationProperty Name="Rental" Relationship="Model.FK_Payment_Rental" FromRole="Payment" ToRole="Rental" />
+          <NavigationProperty Name="PaymentInfoes" Relationship="Model.FK_PaymentInfo_Payment" FromRole="Payment" ToRole="PaymentInfo" />
         </EntityType>
         <EntityType Name="PaymentInfo">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Rep_Id" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Payment_Status" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="Is_Void" Type="Boolean" />
-          <Property Name="Payment_Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Check_Number" Type="Int32" />
-          <Property Name="Credit_Card_Type_Id" Type="Int32" />
-          <Property Name="Payment_Id" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CreditCardType" Relationship="MovieStoreModel.FK_PaymentInfo_CreditCardType" FromRole="PaymentInfo" ToRole="CreditCardType" />
-          <NavigationProperty Name="Payment" Relationship="MovieStoreModel.FK_PaymentInfo_Payment" FromRole="PaymentInfo" ToRole="Payment" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="REF_ID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PAYMENT_STATUS" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="IS_VOID" Type="Boolean" />
+          <Property Name="PAYMENT_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CHECK_NUMBER" Type="Int32" />
+          <Property Name="CREDIT_CARD_TYPE_ID" Type="Int32" />
+          <Property Name="PAYMENT_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CreditCardType" Relationship="Model.FK_PaymentInfo_CreditCardType" FromRole="PaymentInfo" ToRole="CreditCardType" />
+          <NavigationProperty Name="Payment" Relationship="Model.FK_PaymentInfo_Payment" FromRole="PaymentInfo" ToRole="Payment" />
         </EntityType>
         <EntityType Name="PaymentType">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Payments" Relationship="MovieStoreModel.FK_Payment_PaymentType" FromRole="PaymentType" ToRole="Payment" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Payments" Relationship="Model.FK_Payment_PaymentType" FromRole="PaymentType" ToRole="Payment" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Role_Id" Type="Int32" Nullable="false" />
-          <Property Name="First_Name" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Middle_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
-          <Property Name="Is_Active" Type="Boolean" Nullable="false" />
-          <Property Name="Profile_Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Date_Updated" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Addresses" Relationship="MovieStoreModel.FK_Address_Person" FromRole="Person" ToRole="Address" />
-          <NavigationProperty Name="Role" Relationship="MovieStoreModel.FK_Person_Role" FromRole="Person" ToRole="Role" />
-          <NavigationProperty Name="Phones" Relationship="MovieStoreModel.FK_Phone_Person" FromRole="Person" ToRole="Phone" />
-          <NavigationProperty Name="Rentals" Relationship="MovieStoreModel.FK_Rental_Person" FromRole="Person" ToRole="Rental" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MIDDLE_NAME" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USERNAME" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="PASSWORD" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="PROFILE_PICTURE" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="DATE_CREATED" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DATE_UPDATED" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Addresses" Relationship="Model.FK_Address_Person" FromRole="Person" ToRole="Address" />
+          <NavigationProperty Name="Role" Relationship="Model.FK_Person_Role" FromRole="Person" ToRole="Role" />
+          <NavigationProperty Name="Phones" Relationship="Model.FK_Phone_Person" FromRole="Person" ToRole="Phone" />
+          <NavigationProperty Name="Rentals" Relationship="Model.FK_Rental_Person" FromRole="Person" ToRole="Rental" />
         </EntityType>
         <EntityType Name="Phone">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Person_Id" Type="Int32" Nullable="false" />
-          <Property Name="Phone_Type_ID" Type="Int32" Nullable="false" />
-          <Property Name="Number" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
-          <Property Name="Date_Created" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Date_Updated" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Person" Relationship="MovieStoreModel.FK_Phone_Person" FromRole="Phone" ToRole="Person" />
-          <NavigationProperty Name="PhoneType" Relationship="MovieStoreModel.FK_Phone_PhoneType" FromRole="Phone" ToRole="PhoneType" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PERSON_ID" Type="Int32" Nullable="false" />
+          <Property Name="PHONE_TYPE_ID" Type="Int32" Nullable="false" />
+          <Property Name="NUMBER" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="DATE_CREATED" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_UPDATED" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Phone_Person" FromRole="Phone" ToRole="Person" />
+          <NavigationProperty Name="PhoneType" Relationship="Model.FK_Phone_PhoneType" FromRole="Phone" ToRole="PhoneType" />
         </EntityType>
         <EntityType Name="PhoneType">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Phones" Relationship="MovieStoreModel.FK_Phone_PhoneType" FromRole="PhoneType" ToRole="Phone" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Phones" Relationship="Model.FK_Phone_PhoneType" FromRole="PhoneType" ToRole="Phone" />
         </EntityType>
         <EntityType Name="Rental">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Customer_Id" Type="Int32" Nullable="false" />
-          <Property Name="Rental_Date" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="MovieRentals" Relationship="MovieStoreModel.FK_MovieRental_Rental" FromRole="Rental" ToRole="MovieRental" />
-          <NavigationProperty Name="Payments" Relationship="MovieStoreModel.FK_Payment_Rental" FromRole="Rental" ToRole="Payment" />
-          <NavigationProperty Name="Person" Relationship="MovieStoreModel.FK_Rental_Person" FromRole="Rental" ToRole="Person" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+          <Property Name="RENTAL_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="MovieRentals" Relationship="Model.FK_MovieRental_Rental" FromRole="Rental" ToRole="MovieRental" />
+          <NavigationProperty Name="Payments" Relationship="Model.FK_Payment_Rental" FromRole="Rental" ToRole="Payment" />
+          <NavigationProperty Name="Person" Relationship="Model.FK_Rental_Person" FromRole="Rental" ToRole="Person" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="People" Relationship="MovieStoreModel.FK_Person_Role" FromRole="Role" ToRole="Person" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NAME" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="People" Relationship="Model.FK_Person_Role" FromRole="Role" ToRole="Person" />
         </EntityType>
         <Association Name="FK_MovieActor_Actor">
-          <End Type="MovieStoreModel.Actor" Role="Actor" Multiplicity="1" />
-          <End Type="MovieStoreModel.MovieActor" Role="MovieActor" Multiplicity="*" />
+          <End Type="Model.Actor" Role="Actor" Multiplicity="1" />
+          <End Type="Model.MovieActor" Role="MovieActor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Actor">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="MovieActor">
-              <PropertyRef Name="Actor_Id" />
+              <PropertyRef Name="ACTOR_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Address_Person">
-          <End Type="MovieStoreModel.Person" Role="Person" Multiplicity="1">
+          <End Type="Model.Person" Role="Person" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Type="MovieStoreModel.Address" Role="Address" Multiplicity="*" />
+          <End Type="Model.Address" Role="Address" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Address">
-              <PropertyRef Name="Person_Id" />
+              <PropertyRef Name="PERSON_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MovieCategory_Category">
-          <End Type="MovieStoreModel.Category" Role="Category" Multiplicity="1" />
-          <End Type="MovieStoreModel.MovieCategory" Role="MovieCategory" Multiplicity="*" />
+          <End Type="Model.Category" Role="Category" Multiplicity="1" />
+          <End Type="Model.MovieCategory" Role="MovieCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Category">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="MovieCategory">
-              <PropertyRef Name="Category_Id" />
+              <PropertyRef Name="CATEGORY_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PaymentInfo_CreditCardType">
-          <End Type="MovieStoreModel.CreditCardType" Role="CreditCardType" Multiplicity="0..1" />
-          <End Type="MovieStoreModel.PaymentInfo" Role="PaymentInfo" Multiplicity="*" />
+          <End Type="Model.CreditCardType" Role="CreditCardType" Multiplicity="0..1" />
+          <End Type="Model.PaymentInfo" Role="PaymentInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CreditCardType">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="PaymentInfo">
-              <PropertyRef Name="Credit_Card_Type_Id" />
+              <PropertyRef Name="CREDIT_CARD_TYPE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MovieActor_Movie">
-          <End Type="MovieStoreModel.Movie" Role="Movie" Multiplicity="1" />
-          <End Type="MovieStoreModel.MovieActor" Role="MovieActor" Multiplicity="*" />
+          <End Type="Model.Movie" Role="Movie" Multiplicity="1" />
+          <End Type="Model.MovieActor" Role="MovieActor" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Movie">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="MovieActor">
-              <PropertyRef Name="Movie_Id" />
+              <PropertyRef Name="MOVIE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MovieCategory_Movie">
-          <End Type="MovieStoreModel.Movie" Role="Movie" Multiplicity="1" />
-          <End Type="MovieStoreModel.MovieCategory" Role="MovieCategory" Multiplicity="*" />
+          <End Type="Model.Movie" Role="Movie" Multiplicity="1" />
+          <End Type="Model.MovieCategory" Role="MovieCategory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Movie">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="MovieCategory">
-              <PropertyRef Name="Movie_Id" />
+              <PropertyRef Name="MOVIE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MovieRental_Movie">
-          <End Type="MovieStoreModel.Movie" Role="Movie" Multiplicity="1" />
-          <End Type="MovieStoreModel.MovieRental" Role="MovieRental" Multiplicity="*" />
+          <End Type="Model.Movie" Role="Movie" Multiplicity="1" />
+          <End Type="Model.MovieRental" Role="MovieRental" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Movie">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="MovieRental">
-              <PropertyRef Name="Movie_Id" />
+              <PropertyRef Name="MOVIE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_MovieRental_Rental">
-          <End Type="MovieStoreModel.Rental" Role="Rental" Multiplicity="1" />
-          <End Type="MovieStoreModel.MovieRental" Role="MovieRental" Multiplicity="*" />
+          <End Type="Model.Rental" Role="Rental" Multiplicity="1" />
+          <End Type="Model.MovieRental" Role="MovieRental" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Rental">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="MovieRental">
-              <PropertyRef Name="Rental_Id" />
+              <PropertyRef Name="RENTAL_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Payment_PaymentType">
-          <End Type="MovieStoreModel.PaymentType" Role="PaymentType" Multiplicity="1" />
-          <End Type="MovieStoreModel.Payment" Role="Payment" Multiplicity="*" />
+          <End Type="Model.PaymentType" Role="PaymentType" Multiplicity="1" />
+          <End Type="Model.Payment" Role="Payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PaymentType">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Payment">
-              <PropertyRef Name="Payment_Type_Id" />
+              <PropertyRef Name="PAYMENT_TYPE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Payment_Rental">
-          <End Type="MovieStoreModel.Rental" Role="Rental" Multiplicity="1" />
-          <End Type="MovieStoreModel.Payment" Role="Payment" Multiplicity="*" />
+          <End Type="Model.Rental" Role="Rental" Multiplicity="1" />
+          <End Type="Model.Payment" Role="Payment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Rental">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Payment">
-              <PropertyRef Name="Rental_Id" />
+              <PropertyRef Name="RENTAL_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PaymentInfo_Payment">
-          <End Type="MovieStoreModel.Payment" Role="Payment" Multiplicity="1" />
-          <End Type="MovieStoreModel.PaymentInfo" Role="PaymentInfo" Multiplicity="*" />
+          <End Type="Model.Payment" Role="Payment" Multiplicity="1" />
+          <End Type="Model.PaymentInfo" Role="PaymentInfo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Payment">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="PaymentInfo">
-              <PropertyRef Name="Payment_Id" />
+              <PropertyRef Name="PAYMENT_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Person_Role">
-          <End Type="MovieStoreModel.Role" Role="Role" Multiplicity="1" />
-          <End Type="MovieStoreModel.Person" Role="Person" Multiplicity="*" />
+          <End Type="Model.Role" Role="Role" Multiplicity="1" />
+          <End Type="Model.Person" Role="Person" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Person">
-              <PropertyRef Name="Role_Id" />
+              <PropertyRef Name="ROLE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Phone_Person">
-          <End Type="MovieStoreModel.Person" Role="Person" Multiplicity="1" />
-          <End Type="MovieStoreModel.Phone" Role="Phone" Multiplicity="*" />
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Phone" Role="Phone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Phone">
-              <PropertyRef Name="Person_Id" />
+              <PropertyRef Name="PERSON_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Rental_Person">
-          <End Type="MovieStoreModel.Person" Role="Person" Multiplicity="1" />
-          <End Type="MovieStoreModel.Rental" Role="Rental" Multiplicity="*" />
+          <End Type="Model.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model.Rental" Role="Rental" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Rental">
-              <PropertyRef Name="Customer_Id" />
+              <PropertyRef Name="CUSTOMER_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Phone_PhoneType">
-          <End Type="MovieStoreModel.PhoneType" Role="PhoneType" Multiplicity="1" />
-          <End Type="MovieStoreModel.Phone" Role="Phone" Multiplicity="*" />
+          <End Type="Model.PhoneType" Role="PhoneType" Multiplicity="1" />
+          <End Type="Model.Phone" Role="Phone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PhoneType">
-              <PropertyRef Name="Id" />
+              <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Phone">
-              <PropertyRef Name="Phone_Type_ID" />
+              <PropertyRef Name="PHONE_TYPE_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -914,9 +914,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MovieStoreModelStoreContainer" CdmEntityContainer="MovieStoreEntities" >
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="MovieStoreEntities" >
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="MovieStoreModel.sysdiagram">
+            <EntityTypeMapping TypeName="Model.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="definition" ColumnName="definition" />
                 <ScalarProperty Name="version" ColumnName="version" />
@@ -927,179 +927,179 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Actors">
-            <EntityTypeMapping TypeName="MovieStoreModel.Actor">
+            <EntityTypeMapping TypeName="Model.Actor">
               <MappingFragment StoreEntitySet="Actor">
-                <ScalarProperty Name="Date_Updated" ColumnName="Date_Updated" />
-                <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
-                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
-                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
-                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DATE_UPDATED" ColumnName="DATE_UPDATED" />
+                <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Addresses">
-            <EntityTypeMapping TypeName="MovieStoreModel.Address">
+            <EntityTypeMapping TypeName="Model.Address">
               <MappingFragment StoreEntitySet="Address">
-                <ScalarProperty Name="Date_Updated" ColumnName="Date_Updated" />
-                <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="Zip_Code" ColumnName="Zip_Code" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Address_Line_2" ColumnName="Address_Line_2" />
-                <ScalarProperty Name="Address_Line_1" ColumnName="Address_Line_1" />
-                <ScalarProperty Name="Is_Primary" ColumnName="Is_Primary" />
-                <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DATE_UPDATED" ColumnName="DATE_UPDATED" />
+                <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+                <ScalarProperty Name="STATE" ColumnName="STATE" />
+                <ScalarProperty Name="ZIP_CODE" ColumnName="ZIP_CODE" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="ADDRESS_LINE_2" ColumnName="ADDRESS_LINE_2" />
+                <ScalarProperty Name="ADDRESS_LINE_1" ColumnName="ADDRESS_LINE_1" />
+                <ScalarProperty Name="IS_PRIMARY" ColumnName="IS_PRIMARY" />
+                <ScalarProperty Name="PERSON_ID" ColumnName="PERSON_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="MovieStoreModel.Category">
+            <EntityTypeMapping TypeName="Model.Category">
               <MappingFragment StoreEntitySet="Category">
-                <ScalarProperty Name="Date_Updated" ColumnName="Date_Updated" />
-                <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DATE_UPDATED" ColumnName="DATE_UPDATED" />
+                <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CreditCardTypes">
-            <EntityTypeMapping TypeName="MovieStoreModel.CreditCardType">
+            <EntityTypeMapping TypeName="Model.CreditCardType">
               <MappingFragment StoreEntitySet="CreditCardType">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Movies">
-            <EntityTypeMapping TypeName="MovieStoreModel.Movie">
+            <EntityTypeMapping TypeName="Model.Movie">
               <MappingFragment StoreEntitySet="Movie">
-                <ScalarProperty Name="Date_Updated" ColumnName="Date_Updated" />
-                <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
-                <ScalarProperty Name="Is_Removed" ColumnName="Is_Removed" />
-                <ScalarProperty Name="Cover" ColumnName="Cover" />
-                <ScalarProperty Name="Number_Of_Copies" ColumnName="Number_Of_Copies" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="Release_Year" ColumnName="Release_Year" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DATE_UPDATED" ColumnName="DATE_UPDATED" />
+                <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+                <ScalarProperty Name="IS_REMOVED" ColumnName="IS_REMOVED" />
+                <ScalarProperty Name="COVER" ColumnName="COVER" />
+                <ScalarProperty Name="NUMBER_OF_COPIES" ColumnName="NUMBER_OF_COPIES" />
+                <ScalarProperty Name="RATING" ColumnName="RATING" />
+                <ScalarProperty Name="RELEASE_YEAR" ColumnName="RELEASE_YEAR" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MovieActors">
-            <EntityTypeMapping TypeName="MovieStoreModel.MovieActor">
+            <EntityTypeMapping TypeName="Model.MovieActor">
               <MappingFragment StoreEntitySet="MovieActor">
-                <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
-                <ScalarProperty Name="Actor_Id" ColumnName="Actor_Id" />
-                <ScalarProperty Name="Movie_Id" ColumnName="Movie_Id" />
+                <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+                <ScalarProperty Name="ACTOR_ID" ColumnName="ACTOR_ID" />
+                <ScalarProperty Name="MOVIE_ID" ColumnName="MOVIE_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MovieCategories">
-            <EntityTypeMapping TypeName="MovieStoreModel.MovieCategory">
+            <EntityTypeMapping TypeName="Model.MovieCategory">
               <MappingFragment StoreEntitySet="MovieCategory">
-                <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
-                <ScalarProperty Name="Category_Id" ColumnName="Category_Id" />
-                <ScalarProperty Name="Movie_Id" ColumnName="Movie_Id" />
+                <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+                <ScalarProperty Name="CATEGORY_ID" ColumnName="CATEGORY_ID" />
+                <ScalarProperty Name="MOVIE_ID" ColumnName="MOVIE_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MovieRentals">
-            <EntityTypeMapping TypeName="MovieStoreModel.MovieRental">
+            <EntityTypeMapping TypeName="Model.MovieRental">
               <MappingFragment StoreEntitySet="MovieRental">
-                <ScalarProperty Name="Return_Date" ColumnName="Return_Date" />
-                <ScalarProperty Name="Movie_Id" ColumnName="Movie_Id" />
-                <ScalarProperty Name="Rental_Id" ColumnName="Rental_Id" />
+                <ScalarProperty Name="RETURN_DATE" ColumnName="RETURN_DATE" />
+                <ScalarProperty Name="MOVIE_ID" ColumnName="MOVIE_ID" />
+                <ScalarProperty Name="RENTAL_ID" ColumnName="RENTAL_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Payments">
-            <EntityTypeMapping TypeName="MovieStoreModel.Payment">
+            <EntityTypeMapping TypeName="Model.Payment">
               <MappingFragment StoreEntitySet="Payment">
-                <ScalarProperty Name="Rental_Id" ColumnName="Rental_Id" />
-                <ScalarProperty Name="Is_Paid" ColumnName="Is_Paid" />
-                <ScalarProperty Name="Payment_Date" ColumnName="Payment_Date" />
-                <ScalarProperty Name="Amount_Due" ColumnName="Amount_Due" />
-                <ScalarProperty Name="Payment_Type_Id" ColumnName="Payment_Type_Id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RENTAL_ID" ColumnName="RENTAL_ID" />
+                <ScalarProperty Name="IS_PAID" ColumnName="IS_PAID" />
+                <ScalarProperty Name="PAYMENT_DATE" ColumnName="PAYMENT_DATE" />
+                <ScalarProperty Name="AMOUNT_DUE" ColumnName="AMOUNT_DUE" />
+                <ScalarProperty Name="PAYMENT_TYPE_ID" ColumnName="PAYMENT_TYPE_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentInfoes">
-            <EntityTypeMapping TypeName="MovieStoreModel.PaymentInfo">
+            <EntityTypeMapping TypeName="Model.PaymentInfo">
               <MappingFragment StoreEntitySet="PaymentInfo">
-                <ScalarProperty Name="Payment_Id" ColumnName="Payment_Id" />
-                <ScalarProperty Name="Credit_Card_Type_Id" ColumnName="Credit_Card_Type_Id" />
-                <ScalarProperty Name="Check_Number" ColumnName="Check_Number" />
-                <ScalarProperty Name="Payment_Date" ColumnName="Payment_Date" />
-                <ScalarProperty Name="Is_Void" ColumnName="Is_Void" />
-                <ScalarProperty Name="Payment_Status" ColumnName="Payment_Status" />
-                <ScalarProperty Name="Rep_Id" ColumnName="Rep_Id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PAYMENT_ID" ColumnName="PAYMENT_ID" />
+                <ScalarProperty Name="CREDIT_CARD_TYPE_ID" ColumnName="CREDIT_CARD_TYPE_ID" />
+                <ScalarProperty Name="CHECK_NUMBER" ColumnName="CHECK_NUMBER" />
+                <ScalarProperty Name="PAYMENT_DATE" ColumnName="PAYMENT_DATE" />
+                <ScalarProperty Name="IS_VOID" ColumnName="IS_VOID" />
+                <ScalarProperty Name="PAYMENT_STATUS" ColumnName="PAYMENT_STATUS" />
+                <ScalarProperty Name="REF_ID" ColumnName="REF_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PaymentTypes">
-            <EntityTypeMapping TypeName="MovieStoreModel.PaymentType">
+            <EntityTypeMapping TypeName="Model.PaymentType">
               <MappingFragment StoreEntitySet="PaymentType">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="People">
-            <EntityTypeMapping TypeName="MovieStoreModel.Person">
+            <EntityTypeMapping TypeName="Model.Person">
               <MappingFragment StoreEntitySet="Person">
-                <ScalarProperty Name="Date_Updated" ColumnName="Date_Updated" />
-                <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
-                <ScalarProperty Name="Profile_Picture" ColumnName="Profile_Picture" />
-                <ScalarProperty Name="Is_Active" ColumnName="Is_Active" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
-                <ScalarProperty Name="Middle_Name" ColumnName="Middle_Name" />
-                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
-                <ScalarProperty Name="Role_Id" ColumnName="Role_Id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DATE_UPDATED" ColumnName="DATE_UPDATED" />
+                <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+                <ScalarProperty Name="PROFILE_PICTURE" ColumnName="PROFILE_PICTURE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="MIDDLE_NAME" ColumnName="MIDDLE_NAME" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Phones">
-            <EntityTypeMapping TypeName="MovieStoreModel.Phone">
+            <EntityTypeMapping TypeName="Model.Phone">
               <MappingFragment StoreEntitySet="Phone">
-                <ScalarProperty Name="Date_Updated" ColumnName="Date_Updated" />
-                <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="Phone_Type_ID" ColumnName="Phone_Type_ID" />
-                <ScalarProperty Name="Person_Id" ColumnName="Person_Id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DATE_UPDATED" ColumnName="DATE_UPDATED" />
+                <ScalarProperty Name="DATE_CREATED" ColumnName="DATE_CREATED" />
+                <ScalarProperty Name="NUMBER" ColumnName="NUMBER" />
+                <ScalarProperty Name="PHONE_TYPE_ID" ColumnName="PHONE_TYPE_ID" />
+                <ScalarProperty Name="PERSON_ID" ColumnName="PERSON_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PhoneTypes">
-            <EntityTypeMapping TypeName="MovieStoreModel.PhoneType">
+            <EntityTypeMapping TypeName="Model.PhoneType">
               <MappingFragment StoreEntitySet="PhoneType">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rentals">
-            <EntityTypeMapping TypeName="MovieStoreModel.Rental">
+            <EntityTypeMapping TypeName="Model.Rental">
               <MappingFragment StoreEntitySet="Rental">
-                <ScalarProperty Name="Rental_Date" ColumnName="Rental_Date" />
-                <ScalarProperty Name="Customer_Id" ColumnName="Customer_Id" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RENTAL_DATE" ColumnName="RENTAL_DATE" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="MovieStoreModel.Role">
+            <EntityTypeMapping TypeName="Model.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

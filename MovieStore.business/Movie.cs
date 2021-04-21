@@ -5,253 +5,334 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieStore.business
+namespace MovieStore.Business
 {
-  public class Movie
-  {
-    public int Id { get; set; }
-    public string Title { get; set; }
-    public string Description { get; set; }
-    public int ReleaseYear { get; set; }
-    public string Rating { get; set; }
-    public int NumberOfCopies { get; set; }
-    public byte[] Cover { get; set; }
-
-    public List<Actor> Actors { get; set; }
-
-    /// <summary>
-    /// Add movie
-    /// </summary>
-    /// <returns></returns>
-    public async Task addMovie()
+    public class Movie
     {
-      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
-      {
-        MovieStore.data.Movie movie = new MovieStore.data.Movie();
-        movie.Cover = this.Cover;
-        movie.Date_Created = DateTime.Now;
-        movie.Description = this.Description;
-        movie.Title = this.Title;
-        movie.Number_Of_Copies = this.NumberOfCopies;
-        movie.Rating = this.Rating;
-        movie.Release_Year = this.ReleaseYear;
+        public int Id { get; set; }
 
-        db.Movies.Add(movie);
-        await db.SaveChangesAsync();
+        public string Title { get; set; }
 
-      }
-    }
-    /// <summary>
-    /// Update movie cover
-    /// </summary>
-    /// <returns></returns>
-    public async Task updateMovieCover()
-    {
-      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
-      {
-        var movie = await db.Movies.Where(w => w.Id == this.Id).FirstOrDefaultAsync();
+        public bool ActiveOnly { get; set; }
 
-        if (movie != null)
+        public string Description { get; set; }
+
+        public int ReleaseYear { get; set; }
+
+        public string Rating { get; set; }
+
+        public int NumberOfCopies { get; set; }
+
+        public bool IsRemoved { get; set; }
+
+        public byte[] Cover { get; set; }
+
+        public List<Actor> Actors { get; set; }
+
+        /// <summary>
+        /// Add Movie
+        /// </summary>
+        /// <returns></returns>
+        public async Task addMovie()
         {
-          movie.Cover = this.Cover;
-          movie.Date_Updated = DateTime.Now;
-
-          await db.SaveChangesAsync();
-        }
-      }
-    }
-    /// <summary>
-    /// update number of copies
-    /// </summary>
-    /// <returns></returns>
-    public async Task updateNumberOfCopies()
-    {
-      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
-      {
-        var movie = await db.Movies.Where(w => w.Id == this.Id).FirstOrDefaultAsync();
-
-        if (movie != null)
-        {
-          movie.Number_Of_Copies = this.NumberOfCopies;
-          movie.Date_Updated = DateTime.Now;
-
-          await db.SaveChangesAsync();
-        }
-      }
-    }
-    /// <summary>
-    /// Update Movie
-    /// </summary>
-    /// <returns></returns>
-    public async Task updateMovie()
-    {
-      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
-      {
-        var movie = await db.Movies.Where(w => w.Id == this.Id).FirstOrDefaultAsync();
-
-        if (movie != null)
-        {
-          movie.Title = this.Title;
-          movie.Description = this.Description;
-          movie.Rating = this.Rating;
-          movie.Release_Year = this.ReleaseYear;
-          movie.Date_Updated = DateTime.Now;
-          await db.SaveChangesAsync();
-        }
-      }
-    }
-    /// <summary>
-    /// add actors
-    /// </summary>
-    /// <returns></returns>
-    public async Task addActors()
-    {
-      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
-      {
-
-        if(this.Actors!=null && this.Actors.Count > 0)
-        {
-          using (var transaction = db.Database.BeginTransaction())
-          {
-            try
+            using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
             {
-              foreach(var item in this.Actors)
-              {
-                MovieStore.data.MovieActor movieActor = new MovieStore.data.MovieActor();
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        MovieStore.data.Movie movie = new MovieStore.data.Movie();
 
-                movieActor.Actor_Id = item.Id;
-                movieActor.Movie_Id = this.Id;
-                movieActor.Date_Created = DateTime.Now;
+                        movie.COVER = this.Cover;
+                        movie.DATE_CREATED = DateTime.Now;
+                        movie.DESCRIPTION = this.Description;
+                        movie.TITLE = this.Title;
+                        movie.NUMBER_OF_COPIES = this.NumberOfCopies;
+                        movie.RATING = this.Rating;
+                        movie.RELEASE_YEAR = this.ReleaseYear;
+                        movie.IS_REMOVED = false;
 
-                await db.SaveChangesAsync();
-              }
-              transaction.Commit();
+                        db.Movies.Add(movie);
+
+                        await db.SaveChangesAsync();
+
+                        if (this.Actors != null && this.Actors.Count > 0)
+                        {
+                            foreach (var item in this.Actors)
+                            {
+                                MovieStore.data.MovieActor movieActor = new data.MovieActor();
+
+                                movieActor.ACTOR_ID = item.Id;
+                                movieActor.MOVIE_ID = movie.ID;
+                                movieActor.DATE_CREATED = DateTime.Now;
+
+                                db.MovieActors.Add(movieActor);
+
+                                await db.SaveChangesAsync();
+                            }
+                        }
+
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                }
+              
             }
-            catch(Exception ex)
+        }
+
+        /// <summary>
+        /// Update Movie
+        /// </summary>
+        /// <returns></returns>
+        public async Task updateMovie()
+        {
+            using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
             {
-              transaction.Rollback();
-              throw ex;
-            }
-          }
-        }
-      }
-    }
-    /// <summary>
-    /// remove Movie
-    /// </summary>
-    /// <returns></returns>
-    public async Task removeMovie()
-    {
-      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
-      {
-        var movie = await db.Movies.Where(w => w.Id == this.Id).FirstOrDefaultAsync();
+                using (var transaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        var movie = await db.Movies.Where(w => w.ID == this.Id).FirstOrDefaultAsync();
 
-        if(movie != null)
-        {
-          movie.Is_Removed = true;
-          movie.Date_Updated = DateTime.Now;
+                        if (movie != null)
+                        {
+                            if (this.Cover != null)
+                            {
+                                movie.COVER = this.Cover;
+                            }
+                            movie.DATE_UPDATED = DateTime.Now;
+                            movie.DESCRIPTION = this.Description;
+                            movie.TITLE = this.Title;
+                            movie.NUMBER_OF_COPIES = this.NumberOfCopies;
+                            movie.RATING = this.Rating;
+                            movie.RELEASE_YEAR = this.ReleaseYear;
+
+                            await db.SaveChangesAsync();
+
+                            var movieActors = await db.MovieActors.Where(w => w.MOVIE_ID == this.Id).ToListAsync();
+
+                            if (movieActors != null && movieActors.Count > 0)
+                            {
+                                db.MovieActors.RemoveRange(movieActors);
+
+                                await db.SaveChangesAsync();
+                            }
+
+                            if (this.Actors != null && this.Actors.Count > 0)
+                            {
+                                foreach (var item in this.Actors)
+                                {
+                                    MovieStore.data.MovieActor movieActor = new data.MovieActor();
+
+                                    movieActor.ACTOR_ID = item.Id;
+                                    movieActor.MOVIE_ID = movie.ID;
+                                    movieActor.DATE_CREATED = DateTime.Now;
+
+                                    db.MovieActors.Add(movieActor);
+
+                                    await db.SaveChangesAsync();
+                                }
+                            }
+
+                            transaction.Commit();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
+                }
+            }
         }
-      }
+
+        /// <summary>
+        /// Remove Movie
+        /// </summary>
+        /// <returns></returns>
+        public void removeMovie()
+        {
+            using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+            {
+                var movie = db.Movies.Where(w => w.ID == this.Id).FirstOrDefault();
+
+                if (movie != null)
+                {
+                    movie.IS_REMOVED = true;
+                    movie.DATE_UPDATED = DateTime.Now;
+
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Readd Movie
+        /// </summary>
+        /// <returns></returns>
+        public void readdMovie()
+        {
+            using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+            {
+                var movie = db.Movies.Where(w => w.ID == this.Id).FirstOrDefault();
+
+                if (movie != null)
+                {
+                    movie.IS_REMOVED = false;
+                    movie.DATE_UPDATED = DateTime.Now;
+
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get Movie
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Movie> getMovie()
+        {
+            using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+            {
+                return await db.Movies.Where(w => w.ID == this.Id).Select(s => new Movie 
+                { 
+                    Cover = s.COVER,
+                    Description = s.DESCRIPTION,
+                    Id = s.ID,
+                    NumberOfCopies = s.NUMBER_OF_COPIES,
+                    Rating = s.RATING,
+                    ReleaseYear = s.RELEASE_YEAR,
+                    Title = s.TITLE,
+                    Actors = s.MovieActors.Where(w => w.MOVIE_ID == this.Id).Select(x => new Actor 
+                    { 
+                        Id = x.ACTOR_ID, 
+                        FirstName = x.Actor.FIRST_NAME, 
+                        MiddleName = x.Actor.MIDDLE_NAME,
+                        LastName = x.Actor.LAST_NAME
+                    }).ToList()
+                }).FirstOrDefaultAsync();
+            }
+        }
+
+        /// <summary>
+        /// Get Movies
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Movie>> getMovies()
+        {
+            using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+            {
+                return await db.Movies.Select(s => new Movie
+                {
+                    Cover = s.COVER,
+                    Description = s.DESCRIPTION,
+                    Id = s.ID,
+                    NumberOfCopies = s.NUMBER_OF_COPIES,
+                    Rating = s.RATING,
+                    ReleaseYear = s.RELEASE_YEAR,
+                    Title = s.TITLE,
+                    IsRemoved = s.IS_REMOVED.Value,
+                    Actors = s.MovieActors.Where(w => w.MOVIE_ID == s.ID).Select(x => new Actor
+                    {
+                        Id = x.ACTOR_ID,
+                        FirstName = x.Actor.FIRST_NAME,
+                        MiddleName = x.Actor.MIDDLE_NAME,
+                        LastName = x.Actor.LAST_NAME
+                    }).ToList()
+                }).ToListAsync();
+            }
+        }
+
+        /// <summary>
+        /// Browse Movies
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Movie>> browseMovies()
+        {
+            using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+            {
+                return await db.Movies.Where(w => w.IS_REMOVED == false).Select(s => new Movie
+                {
+                    Cover = s.COVER,
+                    Description = s.DESCRIPTION,
+                    Id = s.ID,
+                    NumberOfCopies = s.NUMBER_OF_COPIES,
+                    Rating = s.RATING,
+                    ReleaseYear = s.RELEASE_YEAR,
+                    Title = s.TITLE,
+                    IsRemoved = s.IS_REMOVED.Value,
+                    Actors = s.MovieActors.Where(w => w.MOVIE_ID == s.ID).Select(x => new Actor
+                    {
+                        Id = x.ACTOR_ID,
+                        FirstName = x.Actor.FIRST_NAME,
+                        MiddleName = x.Actor.MIDDLE_NAME,
+                        LastName = x.Actor.LAST_NAME
+                    }).ToList()
+                }).ToListAsync();
+            }
+        }
+
+        /// <summary>
+        /// Search Movies
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<Movie>> searchMovies()
+        {
+            using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
+            {
+                var movies = db.Movies.Select(s => s);
+
+                if (this.ActiveOnly == true)
+                {
+                    movies = movies.Where(w => w.IS_REMOVED == false);
+                }
+
+                if (!string.IsNullOrEmpty(this.Title))
+                {
+                    movies = movies.Where(w => w.TITLE.Contains(this.Title));
+                }
+
+                if (!string.IsNullOrEmpty(this.Rating))
+                {
+                    movies = movies.Where(w => w.RATING.Equals(this.Rating));
+                }
+
+                if (this.ReleaseYear >= 1888)
+                {
+                    movies = movies.Where(w => w.RELEASE_YEAR == this.ReleaseYear);
+                }
+
+                if (this.Actors != null && this.Actors.Count > 0)
+                {
+                    foreach (var item in this.Actors)
+                    {
+                        movies = movies.Where(w => w.MovieActors.Any(a => a.ACTOR_ID == item.Id));
+                    }
+                }
+
+                return await movies.Select(s => new Movie 
+                {
+                    Cover = s.COVER,
+                    Description = s.DESCRIPTION,
+                    Id = s.ID,
+                    NumberOfCopies = s.NUMBER_OF_COPIES,
+                    Rating = s.RATING,
+                    IsRemoved = s.IS_REMOVED.Value,
+                    ReleaseYear = s.RELEASE_YEAR,
+                    Title = s.TITLE,
+                    Actors = s.MovieActors.Where(w => w.MOVIE_ID == s.ID).Select(x => new Actor
+                    {
+                        Id = x.ACTOR_ID,
+                        FirstName = x.Actor.FIRST_NAME,
+                        MiddleName = x.Actor.MIDDLE_NAME,
+                        LastName = x.Actor.LAST_NAME
+                    }).ToList()
+                }).ToListAsync();
+            }
+        }
     }
-    public async Task reAddMovie()
-    {
-      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
-      {
-        var movie = await db.Movies.Where(w => w.Id == this.Id).FirstOrDefaultAsync();
-        if (movie != null)
-        {
-          movie.Is_Removed = false;
-          movie.Date_Updated = DateTime.Now;
-        }
-      }
-    }
-    public async Task<List<Movie>> getMovies()
-    {
-      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
-      {
-        return await db.Movies.Select(s => new Movie
-        {
-          Cover = s.Cover,
-          Description = s.Description,
-          Id = s.Id,
-          NumberOfCopies = s.Number_Of_Copies,
-          Rating = s.Rating,
-          Title = s.Title,
-          ReleaseYear = s.Release_Year,
-          Actors = s.MovieActors.Where(w => w.Movie_Id == this.Id).Select(x => new Actor
-          {
-            Id = x.Actor_Id,
-            FirstName = x.Actor.First_Name,
-            LastName = x.Actor.Last_Name,
-            MiddleName = x.Actor.Middle_Name
-          }).ToList()
-        }).ToListAsync();
-      }
-    }
-    public async Task<Movie> getMovie()
-    {
-      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
-      {
-        return await db.Movies.Where(w => w.Id == this.Id).Select(s => new Movie
-        {
-          Cover = s.Cover,
-          Description = s.Description,
-          Id = s.Id,
-          NumberOfCopies = s.Number_Of_Copies,
-          Rating = s.Rating,
-          Title = s.Title,
-          ReleaseYear = s.Release_Year,
-          Actors = s.MovieActors.Where(w => w.Movie_Id == this.Id).Select(x => new Actor
-          {
-            Id = x.Actor_Id,
-            FirstName = x.Actor.First_Name,
-            LastName = x.Actor.Last_Name,
-            MiddleName = x.Actor.Middle_Name
-          }).ToList()
-        }).FirstOrDefaultAsync();
-      }
-    }
-    public async Task<List<Movie>> searchMovies()
-    {
-      using (MovieStore.data.MovieStoreEntities db = new MovieStore.data.MovieStoreEntities())
-      {
-        var movies = db.Movies.Select(s => s);
-        if (!string.IsNullOrEmpty(this.Title))
-        {
-          movies = movies.Where(w => w.Title.Contains(this.Title));
-        }
-        if (!string.IsNullOrEmpty(this.Rating))
-        {
-          movies = movies.Where(w => w.Rating.Contains(this.Rating));
-        }
-        if (this.ReleaseYear >=1888)
-        {
-          movies = movies.Where(w => w.Release_Year ==this.ReleaseYear);
-        }
-        if(this.Actors!=null && this.Actors.Count > 0)
-        {
-          foreach(var item in this.Actors)
-          {
-            movies = movies.Where(w => w.MovieActors.Any(x => x.Actor_Id == this.Id));
-          }
-        }
-        return await movies.Select(s => new Movie {
-          Cover = s.Cover,
-          Description = s.Description,
-          Id = s.Id,
-          NumberOfCopies = s.Number_Of_Copies,
-          Rating = s.Rating,
-          Title = s.Title,
-          ReleaseYear = s.Release_Year,
-          Actors = s.MovieActors.Where(w => w.Movie_Id == this.Id).Select(x => new Actor
-          {
-            Id = x.Actor_Id,
-            FirstName = x.Actor.First_Name,
-            LastName = x.Actor.Last_Name,
-            MiddleName = x.Actor.Middle_Name
-          }).ToList()
-        }).ToListAsync();
-      }
-    }
-  }
 }

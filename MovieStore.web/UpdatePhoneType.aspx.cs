@@ -6,59 +6,69 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MovieStore.web
+namespace MovieStore.Web
 {
-  public partial class UpdatePhoneType : System.Web.UI.Page
-  {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class UpdatePhoneType : System.Web.UI.Page
     {
-      if (!this.Page.IsPostBack)
-      {
-        this.Page.RegisterAsyncTask(new PageAsyncTask(LoadData));
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            checkPermission();
+            this.Page.RegisterAsyncTask(new PageAsyncTask(LoadData));
+        }
 
-      }
+        private void checkPermission()
+        {
+            if (Session["roleName"] != null && !string.IsNullOrEmpty(Session["roleName"].ToString().Trim()))
+            {
+                if (Session["roleName"].ToString().Trim().Equals("user", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    Response.Redirect("MainMenu.aspx", false);
+                }
+            }
+        }
 
+        private async Task LoadData()
+        {
+            if (!this.Page.IsPostBack)
+            {
+                MovieStore.Business.PhoneType phoneType = new MovieStore.Business.PhoneType
+                {
+                    Id = Convert.ToInt32(Session["phoneTypeId"].ToString().Trim())
+                };
+
+                phoneType = await phoneType.getRecord();
+
+                if (phoneType != null)
+                {
+                    this.tboxPhoneType.Text = phoneType.Name;
+                }
+            }
+        }
+
+        protected void btnUpdate_Click(object sender, EventArgs e)
+        {
+            this.Page.RegisterAsyncTask(new PageAsyncTask(SaveData));
+        }
+
+        private async Task SaveData()
+        {
+            if (this.Page.IsValid)
+            {
+                MovieStore.Business.PhoneType phoneType = new MovieStore.Business.PhoneType
+                {
+                    Id = Convert.ToInt32(Session["phoneTypeId"].ToString().Trim()),
+                    Name = this.tboxPhoneType.Text.Trim()
+                };
+
+                await phoneType.updateRecord();
+
+                Response.Redirect("PhoneTypes.aspx", false);
+            }
+        }
+
+        protected void btnCancel_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("PhoneTypes.aspx");
+        }
     }
-    private async Task LoadData()
-    {
-      MovieStore.business.PhoneType phoneType = new MovieStore.business.PhoneType()
-      {
-        Id = Convert.ToInt32(Session["PhoneTypeId"].ToString().Trim())
-      };
-      phoneType = await phoneType.getRecord();
-
-      if (phoneType != null)
-      {
-        this.tboxPhoneTypeName.Text = phoneType.Name;
-      }
-    }
-
-    protected void btnUpdate_Click(object sender, EventArgs e)
-    {
-      if (this.Page.IsValid)
-      {
-        this.Page.RegisterAsyncTask(new PageAsyncTask(SaveData));
-      }
-
-    }
-    private async Task SaveData()
-    {
-      MovieStore.business.PhoneType PhoneType = new MovieStore.business.PhoneType()
-      {
-        Name = this.tboxPhoneTypeName.Text.Trim(),
-        Id = Convert.ToInt32(Session["phoneTypeId"].ToString())
-
-      };
-
-      await PhoneType.updateRecord();
-      Response.Redirect("PhoneTypes.aspx", false);
-
-    }
-     
-    protected void btnCancel_Click(object sender, EventArgs e)
-    {
-      Response.Redirect("PhoneTypes.aspx", false);
-
-    }
-  }
 }

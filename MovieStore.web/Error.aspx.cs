@@ -6,26 +6,26 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MovieStore.web
+namespace MovieStore.Web
 {
-  public partial class Error : System.Web.UI.Page
-  {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class Error : System.Web.UI.Page
     {
-      if (!this.Page.IsPostBack)
-      {
-        if (Session["errorMessages"] != null && !string.IsNullOrEmpty(Session["errorMessages"].ToString()))
+        protected void Page_Load(object sender, EventArgs e)
         {
-          this.lblErrorMessages.Text = Session["errorMessages"].ToString();
+            if (!this.Page.IsPostBack)
+            {
+                if (Session["errorMessages"] != null && !string.IsNullOrEmpty(Session["errorMessages"].ToString()))
+                {
+                    this.lblErrorMessages.Text = Session["errorMessages"].ToString();
+                }
+            }
         }
-      }
-    }
 
-    protected void btnContinue_Click(object sender, EventArgs e)
-    {
-      Session.Clear();
-      FormsAuthentication.SignOut();
-      Response.Redirect("login.aspx");
+        protected void btnContinue_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            FormsAuthentication.SignOut();
+            Response.Redirect("Login.aspx");
+        }
     }
-  }
 }

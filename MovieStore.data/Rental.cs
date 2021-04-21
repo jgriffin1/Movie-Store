@@ -21,9 +21,9 @@ namespace MovieStore.data
             this.Payments = new HashSet<Payment>();
         }
     
-        public int Id { get; set; }
-        public int Customer_Id { get; set; }
-        public System.DateTime Rental_Date { get; set; }
+        public int ID { get; set; }
+        public int CUSTOMER_ID { get; set; }
+        public System.DateTime RENTAL_DATE { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MovieRental> MovieRentals { get; set; }

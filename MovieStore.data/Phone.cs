@@ -14,12 +14,12 @@ namespace MovieStore.data
     
     public partial class Phone
     {
-        public int Id { get; set; }
-        public int Person_Id { get; set; }
-        public int Phone_Type_ID { get; set; }
-        public string Number { get; set; }
-        public System.DateTime Date_Created { get; set; }
-        public Nullable<System.DateTime> Date_Updated { get; set; }
+        public int ID { get; set; }
+        public int PERSON_ID { get; set; }
+        public int PHONE_TYPE_ID { get; set; }
+        public string NUMBER { get; set; }
+        public System.DateTime DATE_CREATED { get; set; }
+        public Nullable<System.DateTime> DATE_UPDATED { get; set; }
     
         public virtual Person Person { get; set; }
         public virtual PhoneType PhoneType { get; set; }
